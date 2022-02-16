@@ -153,3 +153,5 @@ STATICFILES_FINDERS = [
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+DEFAULT_FROM_EMAIL = 'admin@Otard.com'
