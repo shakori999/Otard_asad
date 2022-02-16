@@ -1,3 +1,4 @@
+from audioop import reverse
 from django.db import models
 
 # Create your models here.
@@ -8,3 +9,6 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_abolute_url(self):
+        return reverse('book_detail', args=[str(self.id)])
