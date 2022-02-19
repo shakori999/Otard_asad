@@ -1,3 +1,4 @@
+from typing import List
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, DetailView
 from .models import Book
@@ -20,3 +21,8 @@ class BookDetailView(
     template_name = 'books/book_detail.html'
     login_url = 'account_login'
     permission_required = 'books.special_status'
+
+class SeachResultsListView(ListView):
+    model = Book
+    context_object_name = 'book_list'
+    template_name = 'books/search_results.html'
