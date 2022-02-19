@@ -8,6 +8,7 @@ Django==3.1.14
 django-allauth==0.42.0
 django-cache-url==3.3.0
 django-crispy-forms==1.9.2
+django-debug-toolbar==2.2
 environs==8.0.0
 idna==3.3
 marshmallow==3.14.1
