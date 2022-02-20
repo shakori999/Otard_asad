@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from pickle import TRUE
 from environs import Env
 
 env = Env()
@@ -58,6 +57,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+
+
     'debug_toolbar',
 
     # Local
@@ -175,3 +177,9 @@ DEFAULT_FROM_EMAIL = 'admin@Otard.com'
 import socket
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+
+
+# allauth
+SITE_ID = 1
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
