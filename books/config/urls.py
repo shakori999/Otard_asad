@@ -20,7 +20,7 @@ from django.urls import path, include
 
 urlpatterns = [
     # Djago admin
-    path('admin/', admin.site.urls),
+    path('bingo/', admin.site.urls),
     
     # User management
     path('accounts/', include('allauth.urls')),
