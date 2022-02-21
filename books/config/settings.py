@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'allauth',
     'allauth.account',
-    'debug_toolbar', # new
+    'allauth.socialaccount',
+    'debug_toolbar', 
 
     # Local
     'accounts',
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.cache.UpdateCacheMiddleware', # new
+    'django.middleware.cache.UpdateCacheMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,8 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware', # new
-    'django.middleware.cache.FetchFromCacheMiddleware', # new
+    'debug_toolbar.middleware.DebugToolbarMiddleware', 
+    'django.middleware.cache.FetchFromCacheMiddleware', 
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -137,7 +138,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # django-allauth config
 LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT = 'home'
-SITE_ID = 1 # new
+SITE_ID = 1 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
