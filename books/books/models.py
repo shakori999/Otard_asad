@@ -4,6 +4,19 @@ from django.urls import reverse
 from django.db import models
 
 # Create your models here.
+
+CATEGORY_CHOICES = (
+    ('SH','Self-help'),
+    ('N','Novel'),
+    ('F','Fiction'),
+)
+
+LABEL_CHOICES = (
+    ('P','primary'),
+    ('S','secondary'),
+    ('D','danger'),
+)
+
 class Book(models.Model):
     id = models.UUIDField(
         primary_key=True,
@@ -13,6 +26,8 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2, null=True)
+    label = models.CharField(choices=LABEL_CHOICES, max_length=1, null=True)
 
     class Meta:
         indexes = [
