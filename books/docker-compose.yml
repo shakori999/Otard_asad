@@ -13,10 +13,10 @@ services:
     environment:
       - "DJANGO_SECRET_KEY=t8wrj!=x&em6+x%z1_!m6n8m3$$jis8!wkhxzn##!_(-%-u9t2t"
       - "DJANGO_DEBUG=True"
-      - "DJANG_SECURE_SSL_REDIRECT=False"
-      - "DJANGO_SECURE_HSTS_SECONDS=0" 
-      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False" 
-      - "DJANGO_SECURE_HSTS_PRELOAD=False" 
+      - "DJANGO_SECURE_SSL_REDIRECT=False"
+      - "DJANGO_SECURE_HSTS_SECONDS=0"
+      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False"
+      - "DJANGO_SECURE_HSTS_PRELOAD=False"
       - "DJANGO_SESSION_COOKIE_SECURE=False"
       - "DJANGO_CSRF_COOKIE_SECURE=False"
   db:
@@ -25,7 +25,6 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
-
 
 volumes:
   postgres_data:
