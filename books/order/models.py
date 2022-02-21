@@ -4,6 +4,7 @@ from books.models import *
 # Create your models here.
 
 class OrderItem(models.Model):
+    title = models.CharField(max_length=200, blank=True)
     item = models.ForeignKey(Book, on_delete=models.CASCADE)
 
     def __str__(self):
