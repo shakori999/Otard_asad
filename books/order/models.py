@@ -4,11 +4,16 @@ from books.models import *
 # Create your models here.
 
 class OrderItem(models.Model):
-    title = models.CharField(max_length=200, blank=True)
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        )
+    ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Book, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.title
+        return f"{self.quantity} of {self.item.title}"
 
 class Order(models.Model):
     user = models.ForeignKey(

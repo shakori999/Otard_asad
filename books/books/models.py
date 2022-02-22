@@ -43,6 +43,10 @@ class Book(models.Model):
 
     def get_absolute_url(self): # new
         return reverse('book_detail', args=[str(self.id)])
+    
+    def get_add_to_cart_url(self):
+        return reverse('add-to-cart', args=[str(self.id)])
+        
 
 class Review(models.Model):
     book = models.ForeignKey(
