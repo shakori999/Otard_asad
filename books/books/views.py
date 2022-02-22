@@ -18,7 +18,7 @@ class BookDetailView(
         DetailView):
     model = Book
     context_object_name = 'book'
-    template_name = 'books/book_detail.html'
+    template_name = 'books/product-page.html'
     login_url = 'account_login'
     permission_required = 'books.special_status'
 

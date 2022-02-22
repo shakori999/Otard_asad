@@ -3,6 +3,7 @@
 
 {% block title %}Log Out {% endblock %}
 {% block content %}
+    <div class="contanier">
     <h1>Log Out</h1>
     <p>Are you sure you want to log out?</P>
     <form method='post' action="{% url 'account_logout' %}">
@@ -10,4 +11,5 @@
         {{ form|crispy }}
         <button class="btn btn-danger" type="submit">Log Out</button>
     </form>
+    </div>
 {% endblock content %}
