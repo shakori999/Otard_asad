@@ -48,8 +48,13 @@ def remove_from_cart(request, pk):
                 user=request.user,
                 ordered=False
             )[0]
-            order.items.remove(order_item)
-            order_item.delete()
+            if order_item.quantity > 1:
+                order_item.quantity -= 1
+                order_item.save()
+            else:
+                order.items.remove(order_item)
+                order_item.delete()
+                return redirect("book_detail", pk=pk)
         else:
             # add a message sying the order does not contain the item
             return redirect("book_detail", pk=pk)
