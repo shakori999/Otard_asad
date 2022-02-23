@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect, render, get_object_or_404
 from books.models import Book
@@ -22,8 +23,10 @@ def add_to_cart(request, pk):
         if order.items.filter(item__id=item.id).exists():
             order_item.quantity += 1
             order_item.save()
+            messages.info(request, "this item was updated to your cart")
         else:
             order.items.add(order_item)
+            messages.info(request, "this item was added to your cart")
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(
@@ -31,6 +34,7 @@ def add_to_cart(request, pk):
             ordered_date=ordered_date
             )
         order.items.add(order_item)
+        messages.info(request, "this item was added to your cart")
     return redirect("book_detail", pk=pk)
 
 def remove_from_cart(request, pk):
@@ -51,15 +55,17 @@ def remove_from_cart(request, pk):
             if order_item.quantity > 1:
                 order_item.quantity -= 1
                 order_item.save()
+                messages.info(request, "this item quantity was updated to your cart")
+                return redirect("book_detail", pk=pk)
             else:
+                messages.info(request, "this item was removed to your cart")
                 order.items.remove(order_item)
                 order_item.delete()
                 return redirect("book_detail", pk=pk)
         else:
-            # add a message sying the order does not contain the item
+            messages.info(request, "this item was not in your cart")
             return redirect("book_detail", pk=pk)
 
     else:
-        # Add a message saying the use doesn't have an order
+        messages.info(request, "you don't have an active order")
         return redirect("book_detail", pk=pk)
-    return redirect("book_detail", pk=pk)
