@@ -12,7 +12,10 @@ def add_to_cart(request, pk):
         user=request.user,
         ordered=False
         )
-    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    order_qs = Order.objects.filter(
+        user=request.user,
+        ordered=False
+        )
     if order_qs.exists():
         order = order_qs[0]
         # check if the order item is in the order
@@ -23,6 +26,35 @@ def add_to_cart(request, pk):
             order.items.add(order_item)
     else:
         ordered_date = timezone.now()
-        order = Order.objects.create(user=request.user, ordered_date=ordered_date)
+        order = Order.objects.create(
+            user=request.user,
+            ordered_date=ordered_date
+            )
         order.items.add(order_item)
+    return redirect("book_detail", pk=pk)
+
+def remove_from_cart(request, pk):
+    item = get_object_or_404(Book, id=pk)
+    order_qs = Order.objects.filter(
+        user=request.user,
+        ordered=False
+        )
+    if order_qs.exists():
+        order = order_qs[0]
+        # check if the order item is in the order
+        if order.items.filter(item__id=item.id).exists():
+            order_item = OrderItem.objects.filter(
+                item=item,
+                user=request.user,
+                ordered=False
+            )[0]
+            order.items.remove(order_item)
+            order_item.delete()
+        else:
+            # add a message sying the order does not contain the item
+            return redirect("book_detail", pk=pk)
+
+    else:
+        # Add a message saying the use doesn't have an order
+        return redirect("book_detail", pk=pk)
     return redirect("book_detail", pk=pk)
