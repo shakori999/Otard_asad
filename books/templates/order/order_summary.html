@@ -34,7 +34,11 @@
                     </tr>
                     {% endfor %}
                     <tr>
-                        <td>${{ order.get_total }}
+                        <td colspan="4"><b>Order Total</b></td>
+                        <td><b>${{ order.get_total }}</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><a class="btn btn-warning float-right" href="/checkout">Procced to checkout</a></td>
                     </tr>
                 </tbody>
             </table>
