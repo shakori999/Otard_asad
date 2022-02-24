@@ -1,11 +1,24 @@
 from django.contrib import messages
-from django.contrib.auth import get_user_model
+from django.views.generic import ListView, View
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render, get_object_or_404
 from books.models import Book
 from django.utils import timezone
 from .models import *
 
 # Create your views here.
+
+class OrderSummaryView(
+        ListView,
+        LoginRequiredMixin,
+        PermissionRequiredMixin,
+        ):
+    model = OrderItem 
+    context_object_name = 'itemss'
+    template_name = 'order/order-summary.html'
+
+
 def add_to_cart(request, pk):
     item = get_object_or_404(Book, id=pk)
     order_item, created= OrderItem.objects.get_or_create(
