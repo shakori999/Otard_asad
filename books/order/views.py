@@ -10,13 +10,20 @@ from .models import *
 # Create your views here.
 
 class OrderSummaryView(
-        ListView,
+        View,
         LoginRequiredMixin,
         PermissionRequiredMixin,
         ):
-    model = OrderItem 
-    context_object_name = 'itemss'
-    template_name = 'order/order-summary.html'
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            context = {
+                'order': order
+            }
+            return render(self.request, 'order/order_summary.html', context)
+        except ObjectDoesNotExist:
+            messages.warning(self.request, "you do not have an active order")
+            return redirect('/')
 
 
 def add_to_cart(request, pk):
