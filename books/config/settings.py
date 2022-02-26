@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'pages',
     'books',
     'order',
+    'checkout',
 ]
 
 MIDDLEWARE = [
