@@ -50,4 +50,4 @@ class CheckoutPageView(View):
 
 class PaymentView(View):
     def get(self, *args, **kwargs):
-        return render(self.request, 'Payment.html')
+        return render(self.request, 'payments/payment.html')
