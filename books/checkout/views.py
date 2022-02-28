@@ -3,9 +3,15 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import View
 from .forms import CheckoutForm
 from django.contrib import messages
+from django.conf import settings
 from .models import *
 from order.models import * 
+import stripe
+
 # Create your views here.
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
 class CheckoutPageView(View):
     
     def get(self, *args, **kwargs):
@@ -23,7 +29,7 @@ class CheckoutPageView(View):
                 street_address = form.cleaned_data.get('street_address')
                 apartment_address = form.cleaned_data.get('apartment_address')
                 country = form.cleaned_data.get('country')
-                zip = form.cleaned_data.get('zip')
+                zip = form.cleaned_data.get('ZIP')
                 # TODO: add functinoality for these fields
                 # same_shipping_address = form.cleaned_data.get(
                 #     'same_shipping_address')
