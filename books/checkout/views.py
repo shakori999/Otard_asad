@@ -1,4 +1,5 @@
 from django.http.response import JsonResponse
+from django.contrib.auth import get_user_model
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render
 from django.core.exceptions import ObjectDoesNotExist
@@ -20,35 +21,46 @@ class CheckoutPageView(View):
     
     def get(self, *args, **kwargs):
         form = CheckoutForm()
+        user = get_user_model()
         context = {
-            'form': form
+            'form': form,
+            'user': user
         }
         return render(self.request, 'checkout/checkout-page.html', context)
 
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
+        order = Order.objects.get(user=self.request.user, ordered=False)
         try:
-            order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
-                street_address = form.cleaned_data.get('street_address')
-                apartment_address = form.cleaned_data.get('apartment_address')
-                country = form.cleaned_data.get('country')
-                zip = form.cleaned_data.get('ZIP')
+                name = form.cleaned_data.get('name')
+                phone = form.cleaned_data.get('number')
+                address = form.cleaned_data.get('street_address')
+                address_2 = form.cleaned_data.get('apartment_address')
+                state = form.cleaned_data.get('state')
                 # TODO: add functinoality for these fields
                 # same_shipping_address = form.cleaned_data.get(
                 #     'same_shipping_address')
                 # save_info =  form.cleaned_data.get('save_info')
-                payment_option = form.cleaned_data.get('payment_option')
-                billing_address = BillingAddress(
-                    user=self.request.user,
-                    street_address = street_address,
-                    apartment_address = apartment_address,
-                    country = country,
-                    zip = zip,
-                )
-                billing_address.save()
-                order.billing_address = billing_address
+                # payment_option = form.cleaned_data.get('payment_option')
+
+                order_items = order.items.all()
+                order_items.update(ordered=True)
+                for item in order_items:
+                    item.save()
+                order.ordered = True
                 order.save()
+
+                print(state)
+                invoice = Invoice.objects.create(
+                    user = self.request.user,
+                    name = name,
+                    phone_number = phone,
+                    address = address,
+                    address_2 = address_2,
+                    state = state,
+                )
+                invoice.save()
                 # TODO: add redirect to the selected payment option
                 return redirect('checkout')
             messages.warning(self.request, 'Faild checkout')
