@@ -22,6 +22,7 @@ class CheckoutPageView(View):
         return render(self.request, 'checkout/checkout-page.html', context)
 
     def post(self, *args, **kwargs):
+        user = self.request.user
         form = CheckoutForm(self.request.POST or None)
         order = Order.objects.get(user=self.request.user, ordered=False)
         try:
@@ -35,13 +36,18 @@ class CheckoutPageView(View):
                 order_items.update(ordered=True)
                 for item in order_items:
                     item.save()
+
                 order.ordered = True
                 order.name = name
                 order.phone_number = phone
                 order.address = address
                 order.address_2 = address_2
-
                 order.save()
+
+                # user.first_name = name
+                # user.phone = phone
+                # user.address = address
+                # user.save()
                 # TODO: add redirect to the selected payment option
                 return redirect('checkout')
             messages.warning(self.request, 'Faild checkout')
@@ -49,8 +55,3 @@ class CheckoutPageView(View):
         except ObjectDoesNotExist:
             messages.warning(self.request, "you do not have an active order")
             return redirect('order_summary')
-
-
-class PaymentView(View):
-    def get(self, *args, **kwargs):
-        return render(self.request, 'payments/payment.html')

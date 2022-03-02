@@ -13,16 +13,22 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
     (None, {'fields': ('email', 'password', ('first_name', 'last_name'),)}),
     ('Contact', {
-        # 'classes': ('collapse',),
-        'fields': ('phone',)
+        'classes': ('collapse',),
+        'fields': ('phone','address','address_2')
     }),
     # ('Biographical Details', {
     #     # 'classes': ('collapse',),
     #     'fields': ('avatar',)
     # }),
     ('Permissions', {'fields': ( 'is_staff', 'is_active')}),
-    # ('Group Permissions', {'fields': ('groups', 'user_permissions')}), if add permissions class
-    # ('Time', {'fields': ('last_login', 'created_at', 'updated_at')}),
+    ('Group Permissions', {'fields': ('groups', 'user_permissions')}),
+    ('Time', {'fields': ('last_login',  'date_joined')}),
+    )
+    add_fieldsets = (
+    (None, {
+        # 'classes': ('wide',),
+        'fields': ('first_name', 'last_name', 'email','phone','address', 'password1', 'password2')}
+        ),
     )
     model = CustomUser
     list_display = ['email', 'username','address']
