@@ -25,6 +25,20 @@ class OrderSummaryView(
             messages.warning(self.request, "you do not have an active order")
             return redirect('/')
 
+class OrderedView(ListView):
+    model = Order
+    context_object_name = 'order'
+    template_name = 'order/order_list.html'
+    # def get(self, *args, **kwargs):
+    #     try:
+    #         order = Order.objects.get(user=self.request.user, ordered=True)
+    #         context = {
+    #             'order': order
+    #         }
+    #         return render(self.request, 'order/ordered_view.html', context)
+    #     except ObjectDoesNotExist:
+    #         messages.warning(self.request, "you don't have an active order2")
+    #         return redirect('/')
 
 def add_to_cart(request, pk):
     item = get_object_or_404(Book, id=pk)

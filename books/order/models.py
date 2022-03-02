@@ -45,6 +45,7 @@ class Order(models.Model):
     phone_number = models.CharField(max_length=11, null=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     address_2 = models.CharField(max_length=200, null=True, blank=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
 
 
     def __str__(self):
@@ -54,4 +55,4 @@ class Order(models.Model):
         total = 0
         for order_item in self.items.all():
             total += order_item.get_final_price()
-        return total
+        return total 

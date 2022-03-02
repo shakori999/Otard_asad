@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">number</th>
+                        <th scope="col">firstname</th>
+                        <th scope="col">phone</th>
+                        <th scope="col">Total price</th>
+                        <th scope="col">location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order_item in order %}
+                     <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ order_item.name}}</td>
+                        <td>{{ order_item.phone_number }}</td>
+                        
+                        <td>
+                            ${{ order_item.get_total}}
+                        </td>
+                        <td>
+                            {{ order_item.address }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
