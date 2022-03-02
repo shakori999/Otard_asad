@@ -37,30 +37,18 @@ class CheckoutPageView(View):
                 phone = form.cleaned_data.get('number')
                 address = form.cleaned_data.get('street_address')
                 address_2 = form.cleaned_data.get('apartment_address')
-                state = form.cleaned_data.get('state')
-                # TODO: add functinoality for these fields
-                # same_shipping_address = form.cleaned_data.get(
-                #     'same_shipping_address')
-                # save_info =  form.cleaned_data.get('save_info')
-                # payment_option = form.cleaned_data.get('payment_option')
 
                 order_items = order.items.all()
                 order_items.update(ordered=True)
                 for item in order_items:
                     item.save()
                 order.ordered = True
-                order.save()
+                order.name = name
+                order.phone_number = phone
+                order.address = address
+                order.address_2 = address_2
 
-                print(state)
-                invoice = Invoice.objects.create(
-                    user = self.request.user,
-                    name = name,
-                    phone_number = phone,
-                    address = address,
-                    address_2 = address_2,
-                    state = state,
-                )
-                invoice.save()
+                order.save()
                 # TODO: add redirect to the selected payment option
                 return redirect('checkout')
             messages.warning(self.request, 'Faild checkout')

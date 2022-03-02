@@ -41,6 +41,10 @@ class Order(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField() 
     ordered = models.BooleanField(default=False)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    phone_number = models.CharField(max_length=11, null=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    address_2 = models.CharField(max_length=200, null=True, blank=True)
 
 
     def __str__(self):
@@ -51,25 +55,3 @@ class Order(models.Model):
         for order_item in self.items.all():
             total += order_item.get_final_price()
         return total
-
-
-STATE_CHOICE = (
-    ('B','Basra'),
-    
-)
-
-class Invoice(models.Model):
-    user = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True
-    ) 
-    name = models.CharField(max_length=100, null=True, blank=True)
-    phone_number = models.CharField(max_length=11, null=True)
-    address = models.CharField(max_length=200, null=True, blank=True)
-    address_2 = models.CharField(max_length=200, null=True, blank=True)
-    state = models.CharField(choices=STATE_CHOICE, max_length=2, null=True, blank=True)
-
-    def __str__(self):
-        return self.user.username
