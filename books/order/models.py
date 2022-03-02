@@ -1,7 +1,6 @@
-from itertools import chain
+import uuid
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.forms import CharField, IntegerField
 from books.models import *
 from checkout.models import *
 # Create your models here.
@@ -33,6 +32,12 @@ class OrderItem(models.Model):
         return self.get_total_item_price()
 
 class Order(models.Model):
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        unique=True,
+        editable=False
+    )
     user = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
@@ -47,9 +52,17 @@ class Order(models.Model):
     address_2 = models.CharField(max_length=200, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['id'], name='id_order'),
+        ]
+
 
     def __str__(self):
         return self.user.username
+
+    def get_absolute_url(self):
+        return reverse('order_detail', args=[str(self.id)])
 
     def get_total(self):
         total = 0

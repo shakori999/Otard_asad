@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render, get_object_or_404
@@ -40,9 +40,15 @@ class OrderedView(ListView):
     #         messages.warning(self.request, "you don't have an active order2")
     #         return redirect('/')
 
+class OrderedDetailView(
+        DeleteView):
+    model = Order
+    context_object_name = 'order'
+    template_name = 'order/order_detail.html'
+
 def add_to_cart(request, pk):
     item = get_object_or_404(Book, id=pk)
-    order_item, created= OrderItem.objects.get_or_create(
+    items, created= OrderItem.objects.create(
         item=item,
         user=request.user,
         ordered=False
@@ -55,11 +61,11 @@ def add_to_cart(request, pk):
         order = order_qs[0]
         # check if the order item is in the order
         if order.items.filter(item__id=item.id).exists():
-            order_item.quantity += 1
-            order_item.save()
+            items.quantity += 1
+            items.save()
             messages.info(request, "this item was updated to your cart")
         else:
-            order.items.add(order_item)
+            order.items.add(items)
             messages.info(request, "this item was added to your cart")
     else:
         ordered_date = timezone.now()
@@ -67,7 +73,7 @@ def add_to_cart(request, pk):
             user=request.user,
             ordered_date=ordered_date
             )
-        order.items.add(order_item)
+        order.items.add(items)
         messages.info(request, "this item was added to your cart")
     return redirect("order_summary")
 

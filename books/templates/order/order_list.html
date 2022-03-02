@@ -17,17 +17,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for order_item in order %}
+                    {% for order_list in order %}
                      <tr>
                         <th scope="row">{{ forloop.counter }}</th>
-                        <td>{{ order_item.name}}</td>
-                        <td>{{ order_item.phone_number }}</td>
+                        <td><a href="{{ order_list.get_absolute_url}}">{{ order_list.name}}</a></td>
+                        <td>{{ order_list.phone_number }}</td>
                         
                         <td>
-                            ${{ order_item.get_total}}
+                            ${{ order_list.get_total}}
                         </td>
                         <td>
-                            {{ order_item.address }}
+                            {{ order_list.address }}
                         </td>
                     </tr>
                     {% endfor %}
