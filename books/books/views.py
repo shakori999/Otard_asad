@@ -20,7 +20,7 @@ class BookDetailView(
     context_object_name = 'book'
     template_name = 'books/product-page.html'
     login_url = 'account_login'
-    permission_required = 'books.special_status'
+    # permission_required = 'books.special_status'
 
 class SeachResultsListView(ListView):
     model = Book
