@@ -14,7 +14,7 @@ class BookListView(
 
 class BookDetailView(
         LoginRequiredMixin,
-        PermissionRequiredMixin,
+        # PermissionRequiredMixin,
         DetailView):
     model = Book
     context_object_name = 'book'
