@@ -48,7 +48,7 @@ class OrderedDetailView(
 
 def add_to_cart(request, pk):
     item = get_object_or_404(Book, id=pk)
-    items, created= OrderItem.objects.create(
+    items, created= OrderItem.objects.get_or_create(
         item=item,
         user=request.user,
         ordered=False
@@ -56,7 +56,8 @@ def add_to_cart(request, pk):
     order_qs = Order.objects.filter(
         user=request.user,
         ordered=False
-        )
+    )
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
         # check if the order item is in the order
