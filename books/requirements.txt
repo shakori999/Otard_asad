@@ -15,6 +15,8 @@ django-cache-url==3.3.0
 django-countries==7.2.1
 django-crispy-forms==1.9.2
 django-debug-toolbar==3.2.4
+django-js-asset==2.0.0
+django-mptt==0.13.4
 environs==8.0.0
 gunicorn==20.1.0
 idna==3.3

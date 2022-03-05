@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'debug_toolbar', 
     'django_countries',
+    'mptt',
 
     # Local
     'accounts',
