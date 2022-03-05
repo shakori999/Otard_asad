@@ -5,17 +5,29 @@ from django.db import models
 
 # Create your models here.
 
-CATEGORY_CHOICES = (
-    ('SH','Self-help'),
-    ('N','Novel'),
-    ('F','Fiction'),
-)
 
 LABEL_CHOICES = (
     ('P','primary'),
     ('S','secondary'),
     ('D','danger'),
 )
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=255)
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False
+    )
+
+    class Meta:
+        verbose_name_plural ='Categories'
+
+    def __str__(self):
+        return self.title
+
+
 
 class Book(models.Model):
     id = models.UUIDField(
@@ -27,9 +39,11 @@ class Book(models.Model):
     author = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     discount_price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2, null=True)
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.SET_NULL, null=True, blank=True)
     label = models.CharField(choices=LABEL_CHOICES, max_length=1, null=True)
     image = models.ImageField(upload_to='items')
+    discription = models.TextField(blank=True, null=True)
+
 
     class Meta:
         indexes = [
@@ -53,6 +67,7 @@ class Book(models.Model):
     def get_remove_from_cart_url(self):
         return reverse('remove-from-cart', args=[str(self.id)])
         
+
 
 class Review(models.Model):
     book = models.ForeignKey(
