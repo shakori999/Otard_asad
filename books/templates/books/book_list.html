@@ -160,7 +160,7 @@
             <div class="card">
               <!--Card image-->
               <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
+                <img src="{{ item.image.url }}" class="card-img-top"
                   alt="">
                 <a href="{{item.get_absolute_url}}">
                   <div class="mask rgba-white-slight"></div>
@@ -250,10 +250,4 @@
     </div>
   </main>
   <!--Main layout-->
-
-    {% for book in book_list %}
-        <div>
-            <h2><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
-        </div>
-    {% endfor %}
 {% endblock content %}
