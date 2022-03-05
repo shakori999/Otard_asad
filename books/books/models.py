@@ -38,6 +38,7 @@ class Book(models.Model):
             ('special_status', 'Can read all books'),
         ]     
         verbose_name_plural = 'items'
+        ordering = ['title']
 
     def __str__(self):
         return self.title
