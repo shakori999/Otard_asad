@@ -29,6 +29,7 @@ class Book(models.Model):
     discount_price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2, null=True)
     label = models.CharField(choices=LABEL_CHOICES, max_length=1, null=True)
+    image = models.ImageField()
 
     class Meta:
         indexes = [
