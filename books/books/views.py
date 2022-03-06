@@ -24,8 +24,8 @@ class BookDetailView(
 
 class SeachResultsListView(ListView):
     model = Book
-    context_object_name = 'book_list'
-    template_name = 'books/search_results.html'
+    context_object_name = 'items_list'
+    template_name = 'books/book_list_compy.html'
 
     def get_queryset(self):
         query = self.request.GET.get('q')
