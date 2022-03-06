@@ -44,12 +44,9 @@ class CheckoutPageView(View):
                 order.address_2 = address_2
                 order.save()
 
-                # user.first_name = name
-                # user.phone = phone
-                # user.address = address
-                # user.save()
                 # TODO: add redirect to the selected payment option
-                return redirect('checkout')
+                messages.warning(self.request, 'تم استلام طلبك بنجاح سيتم التواصل مع باقرب وقت')
+                return redirect('/')
             messages.warning(self.request, 'Faild checkout')
             return redirect('checkout')
         except ObjectDoesNotExist:

@@ -1,10 +1,13 @@
-import imp
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import ListView,TemplateView
+
+from books.models import *
 
 # Create your views here.
-class HomePageView(TemplateView):
-    template_name = 'home.html'
 
-class AboutPageView(TemplateView):
-    template_name = 'about.html'
+class HomePageView(
+        ListView):
+    model = Book
+    context_object_name = 'items'
+    template_name = 'home-page.html'
+    login_url = 'account_login'

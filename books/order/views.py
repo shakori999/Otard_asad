@@ -1,10 +1,15 @@
-from django.contrib import messages
-from django.views.generic import ListView, View, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import redirect, render, get_object_or_404
-from books.models import Book
 from django.utils import timezone
+from django.contrib import messages
+
+from django.views.generic import ListView, View, DeleteView
+
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required
+
+from django.shortcuts import redirect, render, get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
+
+from books.models import Book
 from .models import *
 
 # Create your views here.
@@ -25,7 +30,10 @@ class OrderSummaryView(
             messages.warning(self.request, "you do not have an active order")
             return redirect('/')
 
-class OrderedView(ListView):
+class OrderedView(
+    ListView,
+    LoginRequiredMixin,
+    ):
     model = Order
     context_object_name = 'order'
     template_name = 'order/order_list.html'
@@ -46,6 +54,7 @@ class OrderedDetailView(
     context_object_name = 'order'
     template_name = 'order/order_detail.html'
 
+@login_required(login_url='/accounts/login')
 def add_to_cart(request, pk):
     item = get_object_or_404(Book, id=pk)
     items, created= OrderItem.objects.get_or_create(
@@ -78,6 +87,7 @@ def add_to_cart(request, pk):
         messages.info(request, "this item was added to your cart")
     return redirect("order_summary")
 
+@login_required(login_url='/accounts/login')
 def remove_from_cart(request, pk):
     item = get_object_or_404(Book, id=pk)
     order_qs = Order.objects.filter(
@@ -104,6 +114,7 @@ def remove_from_cart(request, pk):
         messages.info(request, "you don't have an active order")
         return redirect("book_detail", pk=pk)
     
+@login_required(login_url='/accounts/login')
 def remove_single_item_from_cart(request, pk):
     item = get_object_or_404(Book, id=pk)
     order_qs = Order.objects.filter(
