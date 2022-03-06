@@ -1,9 +1,19 @@
 from django.db.models import Q
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import *
 
 
+class BookListView(ListView):
+
+    def get(self, *args, **kwargs):
+        category = Category.objects.all
+        book = Book.objects.all()
+        context = {
+            'category': category,
+            'items_list': book
+        }
+        return render(self.request, 'books/Book_list.html', context)
 
 class BookDetailView(
         DetailView):
