@@ -64,9 +64,6 @@ MIDDLEWARE = [
     'django.middleware.cache.FetchFromCacheMiddleware', 
 ]
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-# STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 ROOT_URLCONF = 'config.urls'
@@ -186,10 +183,6 @@ CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=True)
 
 # Set auto field
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-
-
-STRIPE_PUBLIC_KEY = 'pk_test_51KXyRyB3k7UyiGJCFjhJdy6YqzU0S7F9edcl7nHMdlsgb9eH8anqGz7BiRyEN0v7XHoaiAXlds9Tt4wlG6Q9P33G00uMOh1T6m'
-STRIPE_SECRET_KEY = 'sk_test_51KXyRyB3k7UyiGJCBwd8keYmJ3Of9Q4swyp77avH78G2YQMCjv1zOAiWMv5ORqVlSsbKJg7uuPRCP4gID6BNZsyG00R99Lxmb3'
 
 #MPTT
 MPTT_ADMIN_LEVEL_INDENT = 20
