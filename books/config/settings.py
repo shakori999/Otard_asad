@@ -144,11 +144,11 @@ if USE_S3:
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     AWS_S3_HOST = 's3.me-south-1.amazonaws.com'
     # s3 static settings
-    AWS_LOCATION = 'static'
+    AWS_LOCATION = 'me-south-1'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
     STATICFILES_STORAGE = 'config.storage_backends.StaticStorage'
     # s3 public media settings
-    PUBLIC_MEDIA_LOCATION = 'media'
+    PUBLIC_MEDIA_LOCATION = 'me-south-1'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'config.storage_backends.PublicMediaStorage'
 else:
