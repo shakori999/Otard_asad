@@ -11,7 +11,6 @@ services:
       - 8000:8000
     depends_on:
       - db
-      - selenium
     environment:
       - "DJANGO_SECRET_KEY=t8wrj!=x&em6+x%z1_!m6n8m3$$jis8!wkhxzn##!_(-%-u9t2t"
       - "DJANGO_DEBUG=True"
@@ -29,14 +28,6 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
-
-  selenium:
-    image: selenium/standalone-firefox
-    ports:
-      - 4444:4444
-    restart: always
-
-  
 
 volumes:
   postgres_data:

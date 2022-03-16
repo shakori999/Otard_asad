@@ -1,0 +1,146 @@
+1647425075306	geckodriver	INFO	Listening on 127.0.0.1:39169
+1647425232421	geckodriver	INFO	Listening on 127.0.0.1:41031
+1647425312913	geckodriver	INFO	Listening on 127.0.0.1:58173
+1647425426799	geckodriver	INFO	Listening on 127.0.0.1:34423
+1647425768230	geckodriver	INFO	Listening on 127.0.0.1:59843
+1647425857149	geckodriver	INFO	Listening on 127.0.0.1:34857
+1647425929338	geckodriver	INFO	Listening on 127.0.0.1:37215
+1647426021978	geckodriver	INFO	Listening on 127.0.0.1:58865
+1647426338877	geckodriver	INFO	Listening on 127.0.0.1:55869
+1647426378603	geckodriver	INFO	Listening on 127.0.0.1:36829
+1647426399121	geckodriver	INFO	Listening on 127.0.0.1:46091
+1647426444362	geckodriver	INFO	Listening on 127.0.0.1:49057
+1647426460467	geckodriver	INFO	Listening on 127.0.0.1:59231
+1647426476148	geckodriver	INFO	Listening on 127.0.0.1:39625
+1647426605049	geckodriver	INFO	Listening on 127.0.0.1:53083
+1647426627509	geckodriver	INFO	Listening on 127.0.0.1:39169
+1647426768968	geckodriver	INFO	Listening on 127.0.0.1:49585
+1647426962085	geckodriver	INFO	Listening on 127.0.0.1:53743
+1647426987737	geckodriver	INFO	Listening on 127.0.0.1:49477
+1647427000685	geckodriver	INFO	Listening on 127.0.0.1:51195
+1647427021274	geckodriver	INFO	Listening on 127.0.0.1:41613
+1647427050821	geckodriver	INFO	Listening on 127.0.0.1:36435
+1647427152976	geckodriver	INFO	Listening on 127.0.0.1:46015
+1647427378811	geckodriver	INFO	Listening on 127.0.0.1:53887
+1647428305815	geckodriver	INFO	Listening on 127.0.0.1:53927
+1647428318944	geckodriver	INFO	Listening on 127.0.0.1:57509
+1647428341666	geckodriver	INFO	Listening on 127.0.0.1:57095
+1647428450389	geckodriver	INFO	Listening on 127.0.0.1:52835
+1647428527462	geckodriver	INFO	Listening on 127.0.0.1:50149
+1647428601136	geckodriver	INFO	Listening on 127.0.0.1:45057
+1647428718949	geckodriver	INFO	Listening on 127.0.0.1:33713
+1647428907183	geckodriver	INFO	Listening on 127.0.0.1:54793
+1647429046646	geckodriver	INFO	Listening on 127.0.0.1:57331
+1647429441309	geckodriver	INFO	Listening on 127.0.0.1:34367
+1647429459244	geckodriver	INFO	Listening on 127.0.0.1:51261
+1647429476378	geckodriver	INFO	Listening on 127.0.0.1:50133
+1647429568372	geckodriver	INFO	Listening on 127.0.0.1:37417
+1647429586877	geckodriver	INFO	Listening on 127.0.0.1:43125
+1647429624207	geckodriver	INFO	Listening on 127.0.0.1:43395
+1647429640535	geckodriver	INFO	Listening on 127.0.0.1:58571
+1647429654679	geckodriver	INFO	Listening on 127.0.0.1:44171
+1647429701666	geckodriver	INFO	Listening on 127.0.0.1:59807
+1647429716619	geckodriver	INFO	Listening on 127.0.0.1:54541
+1647429726174	geckodriver	INFO	Listening on 127.0.0.1:51995
+1647429736396	geckodriver	INFO	Listening on 127.0.0.1:60911
+1647429758047	geckodriver	INFO	Listening on 127.0.0.1:40351
+1647429929838	geckodriver	INFO	Listening on 127.0.0.1:44665
+1647430079594	geckodriver	INFO	Listening on 127.0.0.1:49591
+1647448185485	geckodriver	INFO	Listening on 127.0.0.1:38325
+1647448679649	geckodriver	INFO	Listening on 127.0.0.1:35785
+1647449022863	geckodriver	INFO	Listening on 127.0.0.1:51697
+1647449067821	geckodriver	INFO	Listening on 127.0.0.1:43543
+1647449149702	geckodriver	INFO	Listening on 127.0.0.1:43153
+1647449191070	geckodriver	INFO	Listening on 127.0.0.1:38713
+1647450218186	geckodriver	INFO	Listening on 127.0.0.1:52233
+1647450308591	geckodriver	INFO	Listening on 127.0.0.1:52783
+1647450333288	geckodriver	INFO	Listening on 127.0.0.1:45873
+1647450357383	geckodriver	INFO	Listening on 127.0.0.1:56951
+1647450391793	geckodriver	INFO	Listening on 127.0.0.1:43909
+1647450420561	geckodriver	INFO	Listening on 127.0.0.1:60007
+1647450692164	geckodriver	INFO	Listening on 127.0.0.1:37981
+1647451332348	geckodriver	INFO	Listening on 127.0.0.1:61423
+1647451335391	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "61424" "-no-remote" "-profile" "C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofile8KCj74"
+1647451335766	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofile8KCj74\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:61424/devtools/browser/3c7936ae-765f-4acb-b1f7-653236e0553b
+1647451337503	Marionette	INFO	Listening on port 61429
+1647451337584	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1647451340315	Marionette	INFO	Stopped listening on port 61429
+
+###!!! [Parent][PGPUParent] Error: RunMessage(msgname=PGPU::Msg_ShutdownVR) Channel closing: too late to send/recv, messages will be lost
+
+1647451409807	geckodriver	INFO	Listening on 127.0.0.1:57476
+1647451412791	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "57477" "-no-remote" "-profile" "C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofileKMLOUx"
+1647451413145	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofileKMLOUx\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:57477/devtools/browser/f915680e-d1f0-43f6-81ea-c6ba1094b7c7
+1647451414720	Marionette	INFO	Listening on port 57482
+1647451414888	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1647451417527	Marionette	INFO	Stopped listening on port 57482
+1647451450066	geckodriver	INFO	Listening on 127.0.0.1:57517
+1647451453123	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "57518" "-no-remote" "-profile" "C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofileZAGJEf"
+1647451453430	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofileZAGJEf\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:57518/devtools/browser/a59b4bdf-34ce-4124-be79-c90a457cb7df
+1647451455087	Marionette	INFO	Listening on port 57523
+1647451455208	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1647451457847	Marionette	INFO	Stopped listening on port 57523
+
+###!!! [Parent][PGPUParent] Error: RunMessage(msgname=PGPU::Msg_ShutdownVR) Channel closing: too late to send/recv, messages will be lost
+
+1647452088466	geckodriver	INFO	Listening on 127.0.0.1:64237
+1647452091519	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "64238" "-no-remote" "-profile" "C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofileOlpRNM"
+1647452091837	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofileOlpRNM\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:64238/devtools/browser/bf4c14f9-1235-4634-92a9-6020e97d3d01
+1647452093449	Marionette	INFO	Listening on port 64243
+1647452093591	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1647452094996	Marionette	INFO	Stopped listening on port 64243
+1647452206899	geckodriver	INFO	Listening on 127.0.0.1:64316
+1647452209965	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "64317" "-no-remote" "-profile" "C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofilePq72WJ"
+1647452210305	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofilePq72WJ\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:64317/devtools/browser/51be695c-6634-46f3-836a-2dc37b6be7c8
+1647452211866	Marionette	INFO	Listening on port 64322
+1647452212024	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1647452213565	Marionette	INFO	Stopped listening on port 64322
+
+###!!! [Parent][PGPUParent] Error: RunMessage(msgname=PGPU::Msg_ShutdownVR) Channel closing: too late to send/recv, messages will be lost
+
+1647452672946	geckodriver	INFO	Listening on 127.0.0.1:60162
+1647452675985	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "60163" "-no-remote" "-profile" "C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofilevZkous"
+1647452676340	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofilevZkous\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:60163/devtools/browser/17cc8dbb-3a78-4718-ac4c-3d145e3e8344
+1647452678289	Marionette	INFO	Listening on port 60170
+1647452678672	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "http://localhost:60154"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "http://localhost:60154"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+1647452680327	Marionette	INFO	Stopped listening on port 60170
+1647452719304	geckodriver	INFO	Listening on 127.0.0.1:53486
+1647452722364	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "53487" "-no-remote" "-profile" "C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofilew8R0Xp"
+1647452722696	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofilew8R0Xp\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:53487/devtools/browser/fa26fded-effd-446c-9b38-b88bc0dd79a3
+1647452724268	Marionette	INFO	Listening on port 53492
+1647452724442	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "http://localhost:53481"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "http://localhost:53481"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+1647452726104	Marionette	INFO	Stopped listening on port 53492
+1647452804117	geckodriver	INFO	Listening on 127.0.0.1:51279
+1647452807159	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "51280" "-no-remote" "-profile" "C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofile7Po7T4"
+1647452807488	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofile7Po7T4\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:51280/devtools/browser/f837f109-375c-484e-a103-ae4eb2becce7
+1647452809139	Marionette	INFO	Listening on port 51285
+1647452809261	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "http://localhost:50683"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "http://localhost:50683"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+1647452810920	Marionette	INFO	Stopped listening on port 51285
+
+###!!! [Parent][PGPUParent] Error: RunMessage(msgname=PGPU::Msg_ShutdownVR) Channel closing: too late to send/recv, messages will be lost
+
