@@ -504,3 +504,27 @@ JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeE
 ###!!! [Parent][PGPUParent] Error: RunMessage(msgname=PGPU::Msg_ShutdownVR) Channel closing: too late to send/recv, messages will be lost
 
 JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 71: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1647529352458	geckodriver	INFO	Listening on 127.0.0.1:51274
+1647529355562	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "51275" "-no-remote" "-profile" "C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofilenlCE6N"
+1647529355903	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofilenlCE6N\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:51275/devtools/browser/ed360a29-3f38-471b-b13c-995df0aa503e
+1647529357631	Marionette	INFO	Listening on port 51280
+1647529357681	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "http://localhost:51273"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "http://localhost:51273"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+1647529358522	Marionette	INFO	Stopped listening on port 51280
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+1647529577787	geckodriver	INFO	Listening on 127.0.0.1:57555
+1647529580893	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "57556" "-no-remote" "-profile" "C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofileRXYWmE"
+1647529581187	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shako\\AppData\\Local\\Temp\\rust_mozprofileRXYWmE\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:57556/devtools/browser/adce7b74-30dd-4500-bd18-e9d7f597481f
+1647529582782	Marionette	INFO	Listening on port 57562
+1647529582955	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "http://localhost:57554"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "http://localhost:57554"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+1647529583766	Marionette	INFO	Stopped listening on port 57562
