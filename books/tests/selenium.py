@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture(scope="module")
-def firefox_browser_instance(request):
+def chrome_browser_instance(request):
     """
         Provide a selenium webdriver instance
     """
