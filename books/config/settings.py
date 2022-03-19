@@ -50,9 +50,12 @@ INSTALLED_APPS = [
     'accounts',
     'pages',
     'books',
-    'dashboard',
     'order',
     'checkout',
+
+    # New apps for updateing database
+    'dashboard',
+    'inventory',
 ]
 
 MIDDLEWARE = [
