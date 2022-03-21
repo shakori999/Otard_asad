@@ -1,72 +1,72 @@
 [
     {
         "model": "inventory.category",
-        "pk": "4cc0555e-74a8-4d36-9fde-a3c5c3ff9643",
+        "pk": 1,
         "fields": {
-            "name": "django",
-            "slug": "django",
-            "is_active": true,
+            "name": "fashion",
+            "slug": "fashion",
             "parent": null,
-            "lft": 1,
-            "rght": 4,
-            "tree_id": 2,
-            "level": 0
-        }
-    },
-    {
-        "model": "inventory.category",
-        "pk": "68fb201a-4f37-4ec5-8285-b511c2df118e",
-        "fields": {
-            "name": "baseball",
-            "slug": "baseball",
             "is_active": true,
-            "parent": null,
             "lft": 1,
-            "rght": 2,
+            "rght": 70,
             "tree_id": 1,
             "level": 0
         }
     },
     {
         "model": "inventory.category",
-        "pk": "869a7792-5f80-41ec-8b1d-addbbce1c6f2",
+        "pk": 2,
         "fields": {
             "name": "trainers",
             "slug": "trainers",
+            "parent": 1,
             "is_active": true,
-            "parent": null,
-            "lft": 1,
-            "rght": 2,
-            "tree_id": 4,
-            "level": 0
-        }
-    },
-    {
-        "model": "inventory.category",
-        "pk": "aaaf03a0-5877-42ff-bc9e-5facb4b42750",
-        "fields": {
-            "name": "django-model",
-            "slug": "django-model",
-            "is_active": true,
-            "parent": "4cc0555e-74a8-4d36-9fde-a3c5c3ff9643",
             "lft": 2,
-            "rght": 3,
-            "tree_id": 2,
+            "rght": 69,
+            "tree_id": 1,
             "level": 1
         }
     },
     {
         "model": "inventory.category",
-        "pk": "ac1f0314-cb65-4c91-a73e-97791799c83f",
+        "pk": 3,
         "fields": {
-            "name": "fashoin",
-            "slug": "fashoin",
+            "name": "baseball",
+            "slug": "baseball",
+            "parent": 2,
             "is_active": true,
-            "parent": null,
-            "lft": 1,
-            "rght": 2,
-            "tree_id": 3,
-            "level": 0
+            "lft": 3,
+            "rght": 68,
+            "tree_id": 1,
+            "level": 2
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": 4,
+        "fields": {
+            "name": "sport and fitness",
+            "slug": "sport-and-fitness",
+            "parent": 3,
+            "is_active": true,
+            "lft": 60,
+            "rght": 61,
+            "tree_id": 1,
+            "level": 3
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": 5,
+        "fields": {
+            "name": "general purpose",
+            "slug": "general-purpose",
+            "parent": 3,
+            "is_active": true,
+            "lft": 28,
+            "rght": 29,
+            "tree_id": 1,
+            "level": 3
         }
     }
 ]

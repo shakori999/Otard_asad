@@ -137,7 +137,12 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# commanded it for test_product_fixture (create_at and update_at warning:
+# RuntimeWarning: DateTimeField Product.created_at received a naive datetime
+# (2021-09-04 22:14:18.287706) while time zone support is active) only
+# uncommand it in production
+
+# USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
