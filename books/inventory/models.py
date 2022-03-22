@@ -172,27 +172,27 @@ class ProductAttribute(models.Model):
         return self.name
 
 
-# class ProductAttributeValue(models.Model):
-#     """
-#     Product attribute value table
-#     """
+class ProductAttributeValue(models.Model):
+    """
+    Product attribute value table
+    """
 
-#     product_attribute = models.ForeignKey(
-#         ProductAttribute,
-#         related_name="product_attribute",
-#         on_delete=models.PROTECT,
-#     )
-#     attribute_value = models.CharField(
-#         max_length=255,
-#         unique=False,
-#         null=False,
-#         blank=False,
-#         verbose_name=_("attribute value"),
-#         help_text=_("format: required, max-255"),
-#     )
+    product_attribute = models.ForeignKey(
+        ProductAttribute,
+        related_name="product_attribute",
+        on_delete=models.PROTECT,
+    )
+    attribute_value = models.CharField(
+        max_length=255,
+        unique=False,
+        null=False,
+        blank=False,
+        verbose_name=_("attribute value"),
+        help_text=_("format: required, max-255"),
+    )
 
-#     def __str__(self):
-#         return f"{self.product_attribute.name} : {self.attribute_value}"
+    def __str__(self):
+        return f"{self.product_attribute.name} : {self.attribute_value}"
 
 
 class ProductInventory(models.Model):
