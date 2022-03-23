@@ -1,0 +1,7 @@
+<ul>
+    {% for x in data %}
+        <li>{{x.name}}[<a href="{% url 'product_detail' slug=x.slug %}">view</a>]</li>
+        <li>{{x.id}}</li>
+        <li>price: ${{x.product__store_price}}</li>
+    {% endfor %}
+</ul>
