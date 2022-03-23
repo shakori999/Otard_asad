@@ -21,7 +21,12 @@ class HomePageView(ListView):
 
 def product_by_category(request, category):
     data = Product.objects.filter(category__name=category).values(
-        "id", "name", "slug", "category__name", "product__store_price"
+        "id",
+        "name",
+        "slug",
+        "category__name",
+        "product__store_price",
+        # "product__attributevalues",
     )
 
     return render(request, "category/product_by_category.html", {"data": data})
@@ -40,6 +45,7 @@ def product_detail(request, slug):
         "product__name",
         "store_price",
         "product_inventory__units",
+        # "productinventory__attributevalues",
     )
 
     return render(request, "books/product_detail.html", {"data": data})

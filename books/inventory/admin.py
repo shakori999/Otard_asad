@@ -13,4 +13,10 @@ class MyDraggableMPTTAdmin(DraggableMPTTAdmin):
 
 admin.site.register(Category, MyDraggableMPTTAdmin)
 admin.site.register(ProductInventory)
+admin.site.register(ProductAttribute)
+admin.site.register(ProductAttributeValue)
+admin.site.register(ProductAttributeValues)
+admin.site.register(ProductType)
 admin.site.register(Product)
+admin.site.register(Stock)
+admin.site.register(Brand)

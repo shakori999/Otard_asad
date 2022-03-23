@@ -233,7 +233,7 @@ class ProductInventory(models.Model):
         help_text=_("format: true=product visible"),
     )
     is_default = models.BooleanField(
-        default=True,
+        default=False,
         verbose_name=_("default selection"),
         help_text=_("format: true=sub product visible"),
     )
@@ -399,3 +399,23 @@ class ProductAttributeValues(models.Model):
 
     class Meta:
         unique_together = (("attributevalues", "productinventory"),)
+
+
+class ProductTypeAttribute(models.Model):
+    """
+    Product type attributes link table
+    """
+
+    product_attribute = models.ForeignKey(
+        ProductAttribute,
+        related_name="productattribute",
+        on_delete=models.PROTECT,
+    )
+    product_type = models.ForeignKey(
+        ProductType,
+        related_name="producttype",
+        on_delete=models.PROTECT,
+    )
+
+    class Meta:
+        unique_together = (("product_attribute", "product_type"),)
