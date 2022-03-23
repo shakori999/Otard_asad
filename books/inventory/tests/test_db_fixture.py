@@ -105,7 +105,7 @@ def test_inventory_db_product_insert_data(db, product_factory, category_factory)
         (
             1,
             "7633969397",
-            "934093051374",
+            "100000000001",
             1,
             1,
             1,
@@ -120,7 +120,7 @@ def test_inventory_db_product_insert_data(db, product_factory, category_factory)
         (
             8616,
             "3880741573",
-            "844935525855",
+            "100000008616",
             1,
             8616,
             1253,

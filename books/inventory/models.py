@@ -232,6 +232,11 @@ class ProductInventory(models.Model):
         verbose_name=_("product visibility"),
         help_text=_("format: true=product visible"),
     )
+    is_default = models.BooleanField(
+        default=True,
+        verbose_name=_("default selection"),
+        help_text=_("format: true=sub product visible"),
+    )
     retail_price = models.DecimalField(
         max_digits=6,
         decimal_places=2,
