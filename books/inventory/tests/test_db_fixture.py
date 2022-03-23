@@ -340,7 +340,7 @@ def test_inventory_db_product_attribute_dataset(
 ):
     result = ProductAttributeValue.objects.get(id=1)
     assert result.product_attribute.id == 1
-    assert result.attribute_value == "10"
+    assert result.attribute_value == "5"
 
 
 def test_inventory_db_product_attribute_value_data(db, product_attribute_value_factory):
