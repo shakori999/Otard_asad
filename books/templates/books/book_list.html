@@ -18,16 +18,16 @@
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="basicExampleNav">
       <ul class="navbar-nav mr-auto root">
-      {% for cat in category %}
+      {% comment %} {% for cat in category %} {% endcomment %}
         {% comment %} {% recursetree category %} {% endcomment %}
           <li class="nav-item ">
-            <a class="nav-link" href="{% url 'product_by_category' category=cat.slug %}">
-            {{ cat.name}}
+            {% comment %} <a class="nav-link" href="{% url 'product_by_category' category=cat.slug %}"> {% endcomment %}
+            {% comment %} {{ cat.name}} {% endcomment %}
               {% comment %} {{ node.title }} {% endcomment %}
             </a> 
           </li>
         {% comment %} {% endrecursetree %} {% endcomment %}
-        {% endfor %}
+        {% comment %} {% endfor %} {% endcomment %}
       </ul>
     </div>
     <!-- Collapsible content -->
