@@ -1,9 +1,7 @@
 <ul>
-    {% comment %} {% for x in data %} {% endcomment %}
         <li>{{data.product__name}}</li>
         <li>{{data.sku}}</li>
         <li>{{data.product_inventory__units}}</li>
-    {% comment %} {% endfor %} {% endcomment %}
 </ul>
 {% for x in ProductAttributeNames %}
     {{x.product_attribute__name}}
@@ -16,8 +14,19 @@
     {% for productTypeAttribute in productTypeAttributes %}
 
         {% if productTypeAttribute.attribute_values__product_attribute__name == ProductAttributeName.product_attribute__name %}
-
-            <li>{{productTypeAttribute.attribute_values__attribute_value}}
+            {% if productTypeAttribute.attribute_values__attribute_value in data.field_a %}
+                <li>
+                    <div id="target-{{productTypeAttribute.attribute_values__attribute_value}}" class="selected fw-bold">
+                        {{productTypeAttribute.attribute_values__attribute_value}}
+                    </div>
+                </li>
+            {% else%}
+                <li>
+                    <div id="target-{{productTypeAttribute.attribute_values__attribute_value}}" data-attribute="{{ProductAttributeName.product_attribute__name}}" value="{{productTypeAttribute.attribute_values__attribute_value}}">
+                        {{productTypeAttribute.attribute_values__attribute_value}}
+                    </div>
+                </li>
+            {% endif %}
 
         {% endif %}
 
@@ -26,3 +35,7 @@
 </li>
 {% endfor %}
 </ul>
+
+<script>
+
+</script>
