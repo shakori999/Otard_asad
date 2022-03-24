@@ -51,5 +51,8 @@ def product_detail(request, slug):
             "product_inventory__units",
         )
     )
+    z = ProductTypeAttribute.objects.filter(
+        product_type__product_type__product__slug=slug
+    )
 
     return render(request, "books/product_detail.html", {"data": data})
