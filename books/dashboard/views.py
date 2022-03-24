@@ -51,8 +51,25 @@ def product_detail(request, slug):
             "product_inventory__units",
         )
     )
-    z = ProductTypeAttribute.objects.filter(
-        product_type__product_type__product__slug=slug
+    y = (
+        ProductInventory.objects.filter(product__slug=slug)
+        .distinct()
+        .values(
+            "attribute_values__product_attribute__name",
+            "attribute_values__attribute_value",
+        )
     )
+    z = (
+        ProductTypeAttribute.objects.filter(
+            product_type__product_type__product__slug=slug
+        )
+        .values("product_attribute__name")
+        .distinct()
+    )
+    context = {
+        "data": data,
+        "productTypeAttributes": y,
+        "ProductAttributeNames": z,
+    }
 
-    return render(request, "books/product_detail.html", {"data": data})
+    return render(request, "books/product_detail.html", context)

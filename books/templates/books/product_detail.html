@@ -5,3 +5,23 @@
         <li>{{x.product_inventory__units}}</li>
     {% endfor %}
 </ul>
+{% for x in ProductAttributeNames %}
+    {{x.product_attribute__name}}
+{% endfor %}
+
+<ul>
+{% for ProductAttributeName in ProductAttributeNames %}
+    {{ProductAttributeName.product_attribute__name}}
+
+    {% for productTypeAttribute in productTypeAttributes %}
+
+        {% if productTypeAttribute.attribute_values__product_attribute__name == ProductAttributeName.product_attribute__name %}
+
+            <li>{{productTypeAttribute.attribute_values__attribute_value}}</li>
+
+        {% endif %}
+
+    {% endfor %}
+
+{% endfor %}
+</ul>
