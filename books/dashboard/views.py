@@ -52,6 +52,8 @@ def product_detail(request, slug):
                 "store_price",
                 "product_inventory__units",
             )
+            .annotate(field_a=ArrayAgg("attribute_values__attribute_value"))
+            .get()
         )
     else:
         data = (
