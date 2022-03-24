@@ -1,9 +1,9 @@
 <ul>
-    {% for x in data %}
-        <li>{{x.product__name}}</li>
-        <li>{{x.sku}}</li>
-        <li>{{x.product_inventory__units}}</li>
-    {% endfor %}
+    {% comment %} {% for x in data %} {% endcomment %}
+        <li>{{data.product__name}}</li>
+        <li>{{data.sku}}</li>
+        <li>{{data.product_inventory__units}}</li>
+    {% comment %} {% endfor %} {% endcomment %}
 </ul>
 {% for x in ProductAttributeNames %}
     {{x.product_attribute__name}}

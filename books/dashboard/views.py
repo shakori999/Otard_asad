@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, TemplateView
 from django.db.models import Count
+from django.contrib.postgres.aggregates import ArrayAgg
+
 from inventory.models import *
 
 # Create your views here.
@@ -62,6 +64,8 @@ def product_detail(request, slug):
                 "store_price",
                 "product_inventory__units",
             )
+            .annotate(field_a=ArrayAgg("attribute_values__attribute_value"))
+            .get()
         )
 
     productTypeAttributes = (
