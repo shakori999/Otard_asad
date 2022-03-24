@@ -65,13 +65,6 @@
         e++
         console.log(d)
     }
-    {% comment %} document.addEventListener('click', function(e) {
-        let value = e.target.getAttribute('value');
-        d[e.target.getAttribute('data-attribute')] = e.target.getAttribute('value')
-        let querystring = buildUrlWithParams(d)
-        let url = window.location.href.split('?')[0]
-        window.location.href = url + "?" + querystring
-    }, false); {% endcomment %}
     $('[id^=target]').click(function () {
         const value = this.getAttribute('value');
         d[this.getAttribute('data-attribute')] = this.getAttribute('value')
