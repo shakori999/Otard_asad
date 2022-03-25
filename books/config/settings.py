@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "django_countries",
     "mptt",
     "storages",
+    # new third-party from updating database branch
+    "django_elasticsearch_dsl",
     # Local
     "accounts",
     "pages",
@@ -230,3 +232,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # MPTT
 MPTT_ADMIN_LEVEL_INDENT = 20
+
+# define elasticsearch
+ELASTICSEARCH_DSL = {
+    "default": {"hosts": "localhost:9200"},
+}
