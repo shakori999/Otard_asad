@@ -3,7 +3,6 @@ version: '3.8'
 services:
   web:
     build: .
-    # command: python /code/manage.py runserver 0.0.0.0:8000
     command: gunicorn config.wsgi -b 0.0.0.0:8000
     volumes:
       - .:/code
@@ -30,8 +29,8 @@ services:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
 
   esearch:
-    container_name: search
-    image: elasticsearch:8.1.1
+    container_name: esearch
+    image: elasticsearch:7.14.2
     environment:
       - discovery.type=single-node
     ports:
