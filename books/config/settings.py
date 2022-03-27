@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "books",
     "order",
     "checkout",
+    "drf",
     # New apps for updateing database
     "dashboard",
     "inventory",
