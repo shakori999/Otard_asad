@@ -17,6 +17,21 @@ class ProductAttributeValueSerializer(serializers.ModelSerializer):
         depth = 2
 
 
+class MediaSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Media
+        fields = [
+            "image",
+            "alt_text",
+        ]
+        read_only = True
+
+    def get_image(self, obj):
+        return self.context["request"].build_absolute_uri(obj.image.url)
+
+
 class AllProducts(serializers.ModelSerializer):
     class Meta:
         model = Product
@@ -33,11 +48,16 @@ class ProductInventorySerializer(serializers.ModelSerializer):
         many=True,
         read_only=True,
     )
+    image = MediaSerializer(
+        source="media_product_inventory",
+        many=True,
+    )
 
     class Meta:
         model = ProductInventory
         fields = [
             "sku",
+            "image",
             "store_price",
             "is_default",
             "product",

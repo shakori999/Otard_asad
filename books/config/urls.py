@@ -27,7 +27,7 @@ router.register(
     basename="allproducts",
 )
 router.register(
-    r"product",
+    r"product/(?P<slug>[^/.]+)",
     ProductInventoryViewSet,
     basename="Products",
 )
