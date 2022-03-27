@@ -17,6 +17,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from drf.views import AllProductsViewSet
+
+router = routers.DefaultRouter()
+router.register(
+    r"api",
+    AllProductsViewSet,
+    basename="allproducts",
+)
 
 urlpatterns = [
     # Djago admin
@@ -28,6 +37,7 @@ urlpatterns = [
     path("books/", include("books.urls")),
     path("order/", include("order.urls")),
     path("checkout/", include("checkout.urls")),
+    path("api_home/", include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
