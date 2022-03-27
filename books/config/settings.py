@@ -42,17 +42,19 @@ INSTALLED_APPS = [
     "django_countries",
     "mptt",
     "storages",
+    "rest_framework",
     # Local
     "accounts",
     "pages",
     "books",
     "order",
     "checkout",
-    "drf",
     # New apps for updateing database
     "dashboard",
     "inventory",
     "demo",
+    # new apps for DRF
+    "drf",
 ]
 
 MIDDLEWARE = [
