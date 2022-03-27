@@ -6,8 +6,6 @@ class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = ["name"]
-        # verbose_name = 'ModelName'
-        # verbose_name_plural = 'ModelNames'
 
 
 class ProductAttributeValueSerializer(serializers.ModelSerializer):
@@ -15,6 +13,12 @@ class ProductAttributeValueSerializer(serializers.ModelSerializer):
         model = ProductAttributeValue
         exclude = ["id"]
         depth = 2
+
+
+class ProductTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductType
+        fields = ["name"]
 
 
 class MediaSerializer(serializers.ModelSerializer):
@@ -27,9 +31,26 @@ class MediaSerializer(serializers.ModelSerializer):
             "alt_text",
         ]
         read_only = True
+        editable = False
 
     def get_image(self, obj):
         return self.context["request"].build_absolute_uri(obj.image.url)
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ["name"]
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(many=True)
+
+    class Meta:
+        model = Product
+        fields = ["web_id", "slug", "name", "description", "category"]
+        read_only = True
+        editable = False
 
 
 class AllProducts(serializers.ModelSerializer):
@@ -42,6 +63,7 @@ class AllProducts(serializers.ModelSerializer):
 
 
 class ProductInventorySerializer(serializers.ModelSerializer):
+    product = ProductSerializer(many=False, read_only=True)
     brand = BrandSerializer(many=False, read_only=True)
     attribute = ProductAttributeValueSerializer(
         source="attribute_values",
@@ -52,16 +74,25 @@ class ProductInventorySerializer(serializers.ModelSerializer):
         source="media_product_inventory",
         many=True,
     )
+    type = ProductTypeSerializer(
+        source="product_type",
+        many=False,
+        read_only=True,
+    )
+
+    price = serializers.DecimalField(
+        source="retail_price", max_digits=5, decimal_places=2
+    )
 
     class Meta:
         model = ProductInventory
         fields = [
             "sku",
-            "image",
-            "store_price",
+            "price",
             "is_default",
             "product",
-            "product_type",
+            "image",
+            "type",
             "brand",
             "attribute",
         ]

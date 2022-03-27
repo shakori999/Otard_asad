@@ -9,6 +9,9 @@ class AllProductsViewSet(
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
 ):
+    """
+    API endpoint that returns all products
+    """
 
     queryset = Product.objects.all()
     serializer_class = AllProducts
@@ -21,19 +24,21 @@ class AllProductsViewSet(
         return Response(serializer.data)
 
 
-class ProductInventoryViewSet(
+class ProductByCategory(
     viewsets.GenericViewSet,
     mixins.ListModelMixin,
 ):
+    """
+    API endpoint that returns products by category
+    """
+
     queryset = ProductInventory.objects.all()
 
     def list(self, request, slug=None):
         queryset = ProductInventory.objects.filter(
             product__category__slug=slug,
         ).filter(is_default=True)[:10]
-
         serializer = ProductInventorySerializer(
             queryset, context={"request": request}, many=True
         )
-
         return Response(serializer.data)
