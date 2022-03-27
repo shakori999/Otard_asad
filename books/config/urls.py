@@ -18,13 +18,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from drf.views import AllProductsViewSet
+from drf.views import *
 
 router = routers.DefaultRouter()
 router.register(
     r"api",
     AllProductsViewSet,
     basename="allproducts",
+)
+router.register(
+    r"product",
+    ProductInventoryViewSet,
+    basename="Products",
 )
 
 urlpatterns = [
