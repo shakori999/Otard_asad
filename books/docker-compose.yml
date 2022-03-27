@@ -10,7 +10,6 @@ services:
       - 8000:8000
     depends_on:
       - db
-      - esearch
     environment:
       - "DJANGO_SECRET_KEY=t8wrj!=x&em6+x%z1_!m6n8m3$$jis8!wkhxzn##!_(-%-u9t2t"
       - "DJANGO_DEBUG=True"
@@ -22,31 +21,12 @@ services:
       - "DJANGO_CSRF_COOKIE_SECURE=False"
       - USE_S3=false
 
-  # db:
-  #   image: postgres:11
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data/
-  #   environment:
-  #     - "POSTGRES_HOST_AUTH_METHOD=trust"
-
-  pgdb:
-    container_name: pgdb_ecommerce
-    image: postgres
-    restart: always
-    ports:
-      - 5432:5432
+  db:
+    image: postgres:11
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_DB=ecommerce
-      - POSTGRES_USER=ecommerce
-      - POSTGRES_PASSWORD=password
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
 
-  esearch:
-    container_name: esearch
-    image: elasticsearch:7.14.2
-    environment:
-      - discovery.type=single-node
-    ports:
-      - "9200:9200"
-
-# volumes:
-#   postgres_data:
+volumes:
+  postgres_data:
