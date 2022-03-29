@@ -57,8 +57,7 @@ class AllProducts(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = "__all__"
-        exclude = ["name"]
-        rad_only = True
+        read_only = True
         editable = False
 
 
