@@ -10,6 +10,8 @@ services:
       - 8000:8000
     depends_on:
       - db
+    image: app:djnago
+    container_name: backend_server
     environment:
       - "DJANGO_SECRET_KEY=t8wrj!=x&em6+x%z1_!m6n8m3$$jis8!wkhxzn##!_(-%-u9t2t"
       - "DJANGO_DEBUG=True"
