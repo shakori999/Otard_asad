@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from drf.views import *
+from search.views import SearchProductInventory
 
 router = routers.DefaultRouter()
 router.register(
@@ -43,6 +44,7 @@ urlpatterns = [
     path("order/", include("order.urls")),
     path("checkout/", include("checkout.urls")),
     path("api_home/", include(router.urls)),
+    path("search/<str:query>/", SearchProductInventory.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

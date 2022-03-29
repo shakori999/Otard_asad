@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     image: app:djnago
-    container_name: backend_server
+    container_name: web
     environment:
       - "DJANGO_SECRET_KEY=t8wrj!=x&em6+x%z1_!m6n8m3$$jis8!wkhxzn##!_(-%-u9t2t"
       - "DJANGO_DEBUG=True"
@@ -24,11 +24,23 @@ services:
       - USE_S3=false
 
   db:
-    image: postgres:11
+    image: postgres:14
+    container_name: db
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - POSTGRES_DB=ecommerce
+      - POSTGRES_USER=ecommerce
+      - POSTGRES_PASSWORD=password
+
+  esearch:
+    container_name: esearch
+    image: elasticsearch:7.14.2
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
 
 volumes:
   postgres_data:
