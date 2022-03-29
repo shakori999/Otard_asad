@@ -90,6 +90,5 @@ class ProductInventorySerializer(serializers.ModelSerializer):
             "sku",
             "store_price",
             "is_default",
-            "product",
         ]
         read_only = True
