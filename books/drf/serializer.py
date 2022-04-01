@@ -44,11 +44,11 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(many=True)
-
     class Meta:
         model = Product
-        fields = ["web_id", "slug", "name", "description", "category"]
+        fields = [
+            "name",
+        ]
         read_only = True
         editable = False
 
@@ -62,7 +62,7 @@ class AllProducts(serializers.ModelSerializer):
 
 
 class ProductInventorySerializer(serializers.ModelSerializer):
-    # product = ProductSerializer(many=False, read_only=True)
+    product = ProductSerializer(many=False, read_only=True)
     # brand = BrandSerializer(many=False, read_only=True)
     # attribute = ProductAttributeValueSerializer(
     #     source="attribute_values",
@@ -90,5 +90,6 @@ class ProductInventorySerializer(serializers.ModelSerializer):
             "sku",
             "store_price",
             "is_default",
+            "product",
         ]
         read_only = True
