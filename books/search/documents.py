@@ -10,7 +10,17 @@ connections.create_connection(hosts=["localhost:8000"], timeout=20)
 @registry.register_document
 class ProductInventoryDocument(Document):
 
-    product = fields.ObjectField(properties={"name": fields.TextField()})
+    product = fields.ObjectField(
+        properties={
+            "name": fields.TextField(),
+            "web_id": fields.TextField(),
+        }
+    )
+    brand = fields.ObjectField(
+        properties={
+            "name": fields.TextField(),
+        }
+    )
 
     class Index:
         name = "productinventory"

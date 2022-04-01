@@ -12,10 +12,13 @@ class SearchProductInventory(APIView, LimitOffsetPagination):
     productinvetory_serializer = ProductInventorySerializer
     search_document = ProductInventoryDocument
 
-    def get(self, request, query):
+    def get(self, request, query=None):
         try:
             q = Q(
-                "multi_match", query=query, fields=["product.name"], fuzziness="auto"
+                "multi_match",
+                query=query,
+                fields=["product.name", "product.web_id", "brand.name"],
+                fuzziness="auto",
             ) & Q(
                 "bool",
                 should=[
