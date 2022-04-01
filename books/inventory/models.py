@@ -29,7 +29,7 @@ class Category(MPTTModel):
         help_text=_("format: required letters, numbers, underscore, or hyphens"),
     )
 
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     parent = TreeForeignKey(
         "self",
         blank=True,
@@ -42,6 +42,7 @@ class Category(MPTTModel):
     )
 
     class Meta:
+        ordering = ["name"]
         verbose_name = _("product category")
         verbose_name_plural = _("product Categories")
 
@@ -84,7 +85,7 @@ class Product(models.Model):
     description = models.TextField(
         unique=False,
         null=False,
-        blank=False,
+        blank=True,
         verbose_name=_("product description"),
         help_text=_("format: required"),
     )
@@ -152,14 +153,14 @@ class ProductType(models.Model):
         help_text=_("format: required, unique, max-255"),
     )
 
-    def __str__(self):
-        return self.name
-
     product_type_attributes = models.ManyToManyField(
         ProductAttribute,
         related_name="product_type_attributes",
         through="ProductTypeAttribute",
     )
+
+    def __str__(self):
+        return self.name
 
 
 class Brand(models.Model):
@@ -227,7 +228,11 @@ class ProductInventory(models.Model):
     product = models.ForeignKey(
         Product, related_name="product", on_delete=models.PROTECT
     )
-    brand = models.ForeignKey(Brand, related_name="brand", on_delete=models.PROTECT)
+    brand = models.ForeignKey(
+        Brand,
+        related_name="brand",
+        on_delete=models.SET_NULL,
+    )
     attribute_values = models.ManyToManyField(
         ProductAttributeValue,
         related_name="product_attribute_values",
@@ -285,6 +290,16 @@ class ProductInventory(models.Model):
             },
         },
     )
+    is_on_sale = models.BooleanField(
+        default=False,
+        verbose_name=_("if it on sale"),
+        help_text=_("format: true=if it on sale"),
+    )
+    is_digital = models.BooleanField(
+        default=False,
+        verbose_name=_("if this product a digital"),
+        help_text=_("format: true=product digital"),
+    )
     weight = models.FloatField(
         unique=False,
         null=False,
@@ -304,6 +319,8 @@ class ProductInventory(models.Model):
     )
 
     def __str__(self):
+        # or you can return sku
+        # return self.sku
         return self.product.name
 
 
