@@ -244,6 +244,7 @@ MPTT_ADMIN_LEVEL_INDENT = 20
 
 # default pagination class
 REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASS": ["rest_framework.permissions.AllowAny"],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
 }
