@@ -54,7 +54,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductInventorySerializer(serializers.ModelSerializer):
     product = ProductSerializer(many=False, read_only=True)
     brand = BrandSerializer(many=False, read_only=True)
-    attribute = ProductAttributeValueSerializer(
+    attributes = ProductAttributeValueSerializer(
         source="attribute_values",
         many=True,
         read_only=True,
@@ -77,7 +77,7 @@ class ProductInventorySerializer(serializers.ModelSerializer):
             "is_on_sale",
             "weight",
             "media",
-            "attribute",
+            "attributes",
             "product_type",
         ]
         read_only = True

@@ -232,6 +232,7 @@ class ProductInventory(models.Model):
         Brand,
         related_name="brand",
         on_delete=models.SET_NULL,
+        null=True,
     )
     attribute_values = models.ManyToManyField(
         ProductAttributeValue,

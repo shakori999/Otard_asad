@@ -1,26 +1,15 @@
 from django_elasticsearch_dsl import Document, fields
 from django_elasticsearch_dsl.registries import registry
-from inventory.models import ProductInventory, Product
-
-from elasticsearch_dsl import connections
-
-connections.create_connection(hosts=["localhost:8000"], timeout=20)
+from inventory.models import ProductInventory
 
 
 @registry.register_document
 class ProductInventoryDocument(Document):
 
     product = fields.ObjectField(
-        properties={
-            "name": fields.TextField(),
-            "web_id": fields.TextField(),
-        }
+        properties={"name": fields.TextField(), "web_id": fields.TextField()}
     )
-    brand = fields.ObjectField(
-        properties={
-            "name": fields.TextField(),
-        }
-    )
+    brand = fields.ObjectField(properties={"name": fields.TextField()})
 
     class Index:
         name = "productinventory"

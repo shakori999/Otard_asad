@@ -1,15 +1,13 @@
-from drf.serializer import ProductInventorySerializer
-from .documents import ProductInventoryDocument
-from rest_framework.views import APIView
-from rest_framework.pagination import LimitOffsetPagination
 from django.http import HttpResponse
+from drf.serializer import ProductInventorySearchSerializer
+from .documents import ProductInventoryDocument
 from elasticsearch_dsl import Q
-
-from drf.serializer import ProductInventorySerializer
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.views import APIView
 
 
 class SearchProductInventory(APIView, LimitOffsetPagination):
-    productinvetory_serializer = ProductInventorySerializer
+    productinventory_serializer = ProductInventorySearchSerializer
     search_document = ProductInventoryDocument
 
     def get(self, request, query=None):
@@ -20,7 +18,6 @@ class SearchProductInventory(APIView, LimitOffsetPagination):
                 fields=["product.name", "product.web_id", "brand.name"],
                 fuzziness="auto",
             ) & Q(
-                "bool",
                 should=[
                     Q("match", is_default=True),
                 ],
@@ -31,7 +28,7 @@ class SearchProductInventory(APIView, LimitOffsetPagination):
             response = search.execute()
 
             results = self.paginate_queryset(response, request, view=self)
-            serializer = self.productinvetory_serializer(results, many=True)
+            serializer = self.productinventory_serializer(results, many=True)
             return self.get_paginated_response(serializer.data)
 
         except Exception as e:
