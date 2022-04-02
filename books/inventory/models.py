@@ -89,7 +89,14 @@ class Product(models.Model):
         verbose_name=_("product description"),
         help_text=_("format: required"),
     )
-    category = TreeManyToManyField(Category)
+    # category = TreeManyToManyField(Category)
+    category = models.ForeignKey(
+        Category,
+        related_name="product",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+    )
     is_active = models.BooleanField(
         unique=False,
         null=False,
@@ -335,7 +342,7 @@ class Media(models.Model):
         on_delete=models.PROTECT,
         related_name="media_product_inventory",
     )
-    image = models.ImageField(
+    img_url = models.ImageField(
         unique=False,
         null=False,
         blank=False,

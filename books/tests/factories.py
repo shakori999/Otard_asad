@@ -73,7 +73,7 @@ class MediaFactory(factory.django.DjangoModelFactory):
         model = Media
 
     product_inventory = factory.SubFactory(ProductInventoryFactory)
-    image = "images/default.png"
+    img_url = "images/default.png"
     alt_text = "a default image solid color"
     is_feature = True
 
