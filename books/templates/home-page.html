@@ -22,13 +22,16 @@
 
           <!-- Links -->
           <ul class="navbar-nav mr-auto root">
-            {% recursetree category %}
+          {% for cat in category %}
+            {% comment %} {% recursetree category %} {% endcomment %}
               <li class="nav-item ">
-                <a class="nav-link" href="{% url 'books_list' %}">
-                  {{ node.title }}
+                <a class="nav-link" href="{% url 'product_by_category' cat.slug %}">
+                {{ cat.name}}
+                  {% comment %} {{ node.title }} {% endcomment %}
                 </a> 
               </li>
-            {% endrecursetree %}
+            {% comment %} {% endrecursetree %} {% endcomment %}
+            {% endfor %}
           </ul>
           <!-- Links -->
         </div>

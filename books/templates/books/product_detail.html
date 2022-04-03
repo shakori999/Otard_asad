@@ -1,0 +1,81 @@
+<ul>
+        <li>{{data.product__name}}</li>
+        <li>{{data.sku}}</li>
+        <li>{{data.product_inventory__units}}</li>
+</ul>
+{% for x in ProductAttributeNames %}
+    {{x.product_attribute__name}}
+{% endfor %}
+
+<ul>
+{% for ProductAttributeName in ProductAttributeNames %}
+    <li>
+    {{ProductAttributeName.product_attribute__name}}
+    <ul>
+    {% for productTypeAttribute in productTypeAttributes %}
+
+        {% if productTypeAttribute.attribute_values__product_attribute__name == ProductAttributeName.product_attribute__name %}
+            {% if productTypeAttribute.attribute_values__attribute_value in data.field_a %}
+                <li>
+                    <div
+                        id="target-{{productTypeAttribute.attribute_values__attribute_value}}"
+                        class="selected fw-bold"
+                        data-attribute="{{ProductAttributeName.product_attribute__name}}"
+                        value="{{productTypeAttribute.attribute_values__attribute_value}}"
+                    >
+                        {{productTypeAttribute.attribute_values__attribute_value}}
+                    </div>
+            {% else%}
+                    <div
+                        id="target-{{productTypeAttribute.attribute_values__attribute_value}}"
+                        data-attribute="{{ProductAttributeName.product_attribute__name}}"
+                        value="{{productTypeAttribute.attribute_values__attribute_value}}"
+                    >
+                        {{productTypeAttribute.attribute_values__attribute_value}}
+                    </div>
+                </li>
+            {% endif %}
+
+        {% endif %}
+
+    {% endfor %}
+    </ul>
+    </li>
+{% endfor %}
+</ul>
+
+<script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous">
+</script>
+<script>
+    var d = {}
+    let textBoxes = document.querySelectorAll('[id^=target]')
+    let e = 0
+    let f = textBoxes.length
+    for (let i in textBoxes) {
+        if (e < f) {
+            if (textBoxes[i].classList.contains("selected")) {
+                d[textBoxes[i].getAttribute("data-attribute")] = textBoxes[i].getAttribute('value')
+            }
+        } else {
+            break
+        }
+        e++
+        console.log(d)
+    }
+    $('[id^=target]').click(function () {
+        const value = this.getAttribute('value');
+        d[this.getAttribute('data-attribute')] = this.getAttribute('value')
+        const querystring = buildUrlWithParams(d)
+        const url = window.location.href.split('?')[0]
+        window.location.href = url + "?" + querystring;
+    });
+    function buildUrlWithParams(data) {
+        var searchparmas = [];
+        for (var d in data) 
+            searchparmas.push(d + '=' + data[d]);
+        return searchparmas.join('&');
+    }
+</script>
