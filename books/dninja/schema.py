@@ -63,6 +63,5 @@ class InventorySchema(ModelSchema):
             "sku",
             "store_price",
             "is_default",
-            "is_on_sale",
             "weight",
         ]
