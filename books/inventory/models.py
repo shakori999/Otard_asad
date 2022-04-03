@@ -327,9 +327,8 @@ class ProductInventory(models.Model):
     )
 
     def __str__(self):
-        # or you can return sku
-        # return self.sku
-        return self.product.name
+        return self.sku
+        # return self.product.name
 
 
 class Media(models.Model):

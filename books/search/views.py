@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from drf.serializer import ProductInventorySearchSerializer
-from search.documents import ProductInventoryDocument
+from .documents import ProductInventoryDocument
 from elasticsearch_dsl import Q
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.views import APIView
