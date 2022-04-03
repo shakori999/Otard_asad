@@ -1,5 +1,4 @@
 import pytest
-from rest_framework.test import APIClient
 from django.core.management import call_command
 from inventory.models import (
     Category,
@@ -93,11 +92,6 @@ def category_with_multiple_children(db):
     )
     category = Category.objects.bulk_create(record)
     return category
-
-
-@pytest.fixture
-def api_client():
-    return APIClient
 
 
 @pytest.fixture
