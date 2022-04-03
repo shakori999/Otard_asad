@@ -9,7 +9,6 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /usr/src/app
 
 # Install dependencies
-# RUN apk add -u zlib-dev jpeg-dev gcc musl-dev
 
 RUN pip install --upgrade pip
 COPY ./requirements.txt /usr/src/app/requirements.txt
