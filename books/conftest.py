@@ -5,4 +5,5 @@ pytest_plugins = [
     "tests.c_client",
     "tests.api_client",
     "tests.promotion_fixtures",
+    "celery.contrib.pytest",
 ]

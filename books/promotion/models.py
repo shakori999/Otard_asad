@@ -77,7 +77,9 @@ class ProductsOnPromotion(models.Model):
             MinValueValidator(Decimal("0.00")),
         ],
     )
-    price_override = models.BooleanField(default=True)
+    price_override = models.BooleanField(
+        default=False,
+    )
 
     class Meta:
         unique_together = ("product_inventory_id", "promotion_id")
