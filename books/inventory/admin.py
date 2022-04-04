@@ -11,12 +11,16 @@ class MyDraggableMPTTAdmin(DraggableMPTTAdmin):
     list_display_links = ("indented_title",)
 
 
-admin.site.register(Category, MyDraggableMPTTAdmin)
-admin.site.register(ProductInventory)
-admin.site.register(ProductAttribute)
-admin.site.register(ProductAttributeValue)
-admin.site.register(ProductAttributeValues)
-admin.site.register(ProductType)
+class InventoryAdmin(admin.ModelAdmin):
+    list_display = ("product", "store_price")
+
+
 admin.site.register(Product)
-admin.site.register(Stock)
-admin.site.register(Brand)
+admin.site.register(Category, MyDraggableMPTTAdmin)
+admin.site.register(ProductInventory, InventoryAdmin)
+# admin.site.register(ProductAttribute)
+# admin.site.register(ProductAttributeValue)
+# admin.site.register(ProductAttributeValues)
+# admin.site.register(ProductType)
+# admin.site.register(Stock)
+# admin.site.register(Brand)
