@@ -4,4 +4,5 @@ pytest_plugins = [
     "tests.selenium",
     "tests.c_client",
     "tests.api_client",
+    "tests.promotion_fixtures",
 ]

@@ -30,10 +30,10 @@ class Promotion(models.Model):
     promo_start = models.DateField()
     promo_end = models.DateField()
 
-    product_on_promotion = models.ManyToManyField(
+    products_on_promotion = models.ManyToManyField(
         ProductInventory,
         related_name="products_on_promotion",
-        through="productOnPromotion",
+        through="ProductsOnPromotion",
     )
 
     promo_type = models.ForeignKey(
@@ -58,7 +58,7 @@ class Promotion(models.Model):
         return self.name
 
 
-class ProductsOnPromotion(models.Models):
+class ProductsOnPromotion(models.Model):
     product_inventory_id = models.ForeignKey(
         ProductInventory,
         related_name="productInventoryOnPromotion",
@@ -80,4 +80,4 @@ class ProductsOnPromotion(models.Models):
     price_override = models.BooleanField(default=True)
 
     class Meta:
-        uniue_together = ("product_inventory_id", "promotion_id")
+        unique_together = ("product_inventory_id", "promotion_id")
