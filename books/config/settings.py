@@ -1,6 +1,7 @@
 from pathlib import Path
 from environs import Env
 import os
+from celery.schedules import crontab
 
 env = Env()
 env.read_env()
@@ -261,3 +262,11 @@ ELASTICSEARCH_DSL = {
 # Celery config
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
+
+
+CELERY_BEAT_SCHEDULE = {
+    "sample_task": {
+        "task": "promotion.promotion_management",
+        "schedule": crontab(minute="0", hour="1"),
+    },
+}
