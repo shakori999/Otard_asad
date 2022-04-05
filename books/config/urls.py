@@ -22,7 +22,6 @@ urlpatterns = [
     path("api/inventory/<int:query>/", ProductInventoryByWebId.as_view()),
     # ealsticsearch
     path("api/search/<str:query>/", SearchProductInventory.as_view()),
-    path("ninja/", include("dninja.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     "storages",
     "rest_framework",
     "django_elasticsearch_dsl",
-    "ninja",
     # Local
     "accounts",
     "pages",
@@ -59,7 +58,6 @@ INSTALLED_APPS = [
     # new apps for DRF
     "drf",
     "search",
-    "dninja",
     "promotion",
 ]
 
