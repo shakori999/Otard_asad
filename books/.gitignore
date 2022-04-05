@@ -1,3 +1,4 @@
 docker-compose-prod.yml
 __pychache__/
 db.sqlite3
+.env
