@@ -25,8 +25,8 @@ class ProductFactory(factory.django.DjangoModelFactory):
     name = fake.lexify(text="prod_name_??????")
     description = fake.text()
     is_active = True
-    created_at = "2021-09-04 22:14:18.279092"
-    updated_at = "2021-09-04 22:14:18.279092"
+    created_at = "2021-09-01 22:14:18.279092"
+    updated_at = "2021-09-01 22:14:18.279092"
 
     @factory.post_generation
     def category(self, create, extracted, **kwargs):
@@ -64,7 +64,6 @@ class ProductInventoryFactory(factory.django.DjangoModelFactory):
     is_active = 1
     retail_price = 97
     store_price = 92
-    sale_price = 46
     weight = 987
 
 
