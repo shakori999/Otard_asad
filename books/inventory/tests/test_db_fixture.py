@@ -8,8 +8,8 @@ from inventory.models import *
     "id, name, slug, is_active",
     [
         (1, "fashion", "fashion", 1),
-        # (2, "woman", "woman", 1),
-        # (3, "shoes", "shoes", 1),
+        (2, "woman", "woman", 1),
+        (3, "shoes", "shoes", 1),
     ],
 )
 def test_inventory_category_dbfixture(db, db_fixture_setup, id, name, slug, is_active):
@@ -23,8 +23,8 @@ def test_inventory_category_dbfixture(db, db_fixture_setup, id, name, slug, is_a
     "slug, is_active",
     [
         ("fashoin", 1),
-        # ("trainers", 1),
-        # ("baseball", 1),
+        ("trainers", 1),
+        ("baseball", 1),
     ],
 )
 def test_inventory_db_category_insert_data(db, category_factory, slug, is_active):
@@ -150,16 +150,16 @@ def test_inventory_db_insert_inventory_product_values(
             "2021-09-01 10:20:30",
             "2021-09-01 10:20:30",
         ),
-        (
-            50,
-            "45425859",
-            "aerosoes my way biker boot faux leather",
-            "aerosoes-my-way-biker-boot-faux-leather",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta, eros vel sollicitudin lacinia, quam metus gravida elit, a elementum nisl neque sit amet orci. Nulla id lorem ac nunc cursus consequat vitae ut orci. In a velit eu justo eleifend tincidunt vel eu turpis. Praesent eu orci egestas, lobortis magna egestas, tincidunt augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean vitae lectus eget tortor laoreet efficitur vel et leo. Maecenas volutpat eget ante id tempor. Etiam posuere ex urna, at aliquet risus tempor eu. Aenean a odio odio. Nunc consectetur lorem ante, interdum ultrices elit consectetur sit amet. Vestibulum rutrum interdum nulla. Cras vel mi a enim eleifend blandit. Curabitur ex dui, rutrum et odio sit amet, auctor euismod massa.",
-            1,
-            "2021-09-01 10:20:30",
-            "2021-09-01 10:20:30",
-        ),
+        # (
+        #     50,
+        #     "45425859",
+        #     "aerosoes my way biker boot faux leather",
+        #     "aerosoes-my-way-biker-boot-faux-leather",
+        #     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta, eros vel sollicitudin lacinia, quam metus gravida elit, a elementum nisl neque sit amet orci. Nulla id lorem ac nunc cursus consequat vitae ut orci. In a velit eu justo eleifend tincidunt vel eu turpis. Praesent eu orci egestas, lobortis magna egestas, tincidunt augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean vitae lectus eget tortor laoreet efficitur vel et leo. Maecenas volutpat eget ante id tempor. Etiam posuere ex urna, at aliquet risus tempor eu. Aenean a odio odio. Nunc consectetur lorem ante, interdum ultrices elit consectetur sit amet. Vestibulum rutrum interdum nulla. Cras vel mi a enim eleifend blandit. Curabitur ex dui, rutrum et odio sit amet, auctor euismod massa.",
+        #     1,
+        #     "2021-09-01 10:20:30",
+        #     "2021-09-01 10:20:30",
+        # ),
     ],
 )
 def test_inventory_db_product_dbfixture(
@@ -174,7 +174,7 @@ def test_inventory_db_product_dbfixture(
     created_at,
     updated_at,
 ):
-    result = Product.objects.get(name=name)
+    result = Product.objects.get(web_id=web_id)
     result_created_at = result.created_at.strftime("%Y-%m-%d %H:%M:%S")
     result_updated_at = result.updated_at.strftime("%Y-%m-%d %H:%M:%S")
 
