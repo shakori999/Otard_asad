@@ -13,6 +13,7 @@ class Category(MPTTModel):
     Inventory Category  table implimented with MPTT
     """
 
+    # TODO: add a UUID to this model
     # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(
         max_length=100,
@@ -215,6 +216,9 @@ class ProductInventory(models.Model):
     Product inventory table
     """
 
+    # TODO: Add a UUID as ID
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
     sku = models.CharField(
         max_length=20,
         unique=True,
@@ -309,6 +313,16 @@ class ProductInventory(models.Model):
         verbose_name=_("date sub-product updated"),
         help_text=_("format: Y-m-d H:M:S"),
     )
+    # TODO: add extra infos for this model
+    # class Meta:
+    #     indexes = [
+    #         models.Index(fields=["id"], name="id_index"),
+    #     ]
+    #     permissions = [
+    #         ("special_status", "Can read all books"),
+    #     ]
+    #     verbose_name_plural = "items"
+    #     ordering = ["title"]
 
     def __str__(self):
         return self.sku
@@ -433,3 +447,17 @@ class ProductTypeAttribute(models.Model):
 
     class Meta:
         unique_together = (("product_attribute", "product_type"),)
+
+
+# TODO: Review system for products
+
+# class Review(models.Model):
+#     book = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="reviews")
+#     review = models.CharField(max_length=255)
+#     author = models.ForeignKey(
+#         get_user_model(),
+#         on_delete=models.CASCADE,
+#     )
+
+#     def __str__(self):
+#         return self.review
