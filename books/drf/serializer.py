@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
 from inventory.models import *
 from promotion.models import Promotion
+from order.models import *
 
 
 class BrandSerializer(serializers.ModelSerializer):
@@ -111,4 +112,37 @@ class ProductInventorySearchSerializer(serializers.ModelSerializer):
             "is_default",
             "product",
             "brand",
+        ]
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+
+    item = ProductInventorySerializer(many=False, read_only=True)
+
+    class Meta:
+        model = OrderItem
+        fields = [
+            # "user",
+            "ordered",
+            "item",
+            "quantity",
+        ]
+
+
+class OrderSerializer(serializers.ModelSerializer):
+
+    items = OrderItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Order
+        fields = [
+            "items",
+            "start_date",
+            "ordered_date",
+            "ordered",
+            "name",
+            "phone_number",
+            "address",
+            "address_2",
+            "price",
         ]
