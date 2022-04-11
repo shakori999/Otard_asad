@@ -23,8 +23,6 @@ class OrderSummaryView(
     def get(self, *args, **kwargs):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
-            for order_item in order.items.all:
-                order_item.price = order_item.get_final_price()
             context = {"order": order}
             return render(self.request, "order/order_summary.html", context)
         except ObjectDoesNotExist:

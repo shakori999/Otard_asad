@@ -78,7 +78,7 @@ class Order(models.Model):
         return reverse("order_detail", args=[str(self.id)])
 
     def get_total(self):
-        total = Decimal(0)
+        total = 0
         for order_item in self.items.all():
             total += order_item.get_final_price()
-        return total
+        return str(total)

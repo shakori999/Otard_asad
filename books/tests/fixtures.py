@@ -172,16 +172,112 @@ def order_item(
     db, single_product, product_type, brand, product_attribute_value, create_admin_user
 ):
     user = create_admin_user
+    sub_product = ProductInventory.objects.create(
+        sku="123456789",
+        upc="100000000001",
+        product_type=product_type,
+        product=single_product,
+        brand=brand,
+        is_active=True,
+        is_default=True,
+        retail_price="199.99",
+        store_price="99.99",
+        is_digital=False,
+        weight=1000.0,
+    )
+
+    media = Media.objects.create(
+        product_inventory=sub_product,
+        img_url="images/default.png",
+        alt_text="default",
+        is_feature=True,
+    )
+
+    product_attribute_value = product_attribute_value
+    sub_product.attribute_values.add(product_attribute_value)
+
+    order_item = OrderItem.objects.create(
+        user=user,
+        ordered=False,
+        item=sub_product,
+        quantity=1,
+        price="500.00",
+    )
+    order_item.price = order_item.get_final_price()
+
     order = Order.objects.create(
         user=user,
+        start_date="2022-04-10T06:41:41",
+        ordered_date="2022-04-10T06:41:41",
+        ordered=False,
+        name="murtatha",
+        phone_number="07806017024",
+        address="ira",
+        address_2="asd",
+        price="500.00",
+    )
+    order.items.set([order_item])
+    order.price = order.get_total()
+
+    return {
+        "order": order,
+        "order_item": order_item,
+        "media": media,
+        "attribute": product_attribute_value,
+    }
+
+
+@pytest.fixture
+def ordered_order(
+    db, single_product, product_type, brand, product_attribute_value, create_admin_user
+):
+    user = create_admin_user
+    sub_product = ProductInventory.objects.create(
+        sku="123456789",
+        upc="100000000001",
+        product_type=product_type,
+        product=single_product,
+        brand=brand,
+        is_active=True,
+        is_default=True,
+        retail_price="199.99",
+        store_price="99.99",
+        is_digital=False,
+        weight=1000.0,
+    )
+
+    media = Media.objects.create(
+        product_inventory=sub_product,
+        img_url="images/default.png",
+        alt_text="default",
+        is_feature=True,
+    )
+
+    product_attribute_value = product_attribute_value
+    sub_product.attribute_values.add(product_attribute_value)
+
+    order_item = OrderItem.objects.create(
+        user=user,
+        ordered=True,
+        item=sub_product,
+        quantity=1,
+        price="99.99",
+    )
+    order = Order.objects.create(
+        user=user,
+        start_date="2022-04-10T06:41:41",
         ordered_date="2022-04-10T06:41:41",
         ordered=True,
         name="murtatha",
         phone_number="07806017024",
-        price="500.00",
         address="ira",
         address_2="asd",
+        price="500.00",
     )
+    order.items.set([order_item])
     return {
         "order": order,
+        "order_item": order_item,
+        "media": media,
+        "attribute": product_attribute_value,
     }
