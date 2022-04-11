@@ -14,45 +14,48 @@ from .models import *
 
 # Create your views here.
 
+
 class OrderSummaryView(
-        View,
-        LoginRequiredMixin,
-        PermissionRequiredMixin,
-        ):
+    View,
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+):
     def get(self, *args, **kwargs):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
-            context = {
-                'order': order
-            }
-            return render(self.request, 'order/order_summary.html', context)
+            for order_item in order.items.all:
+                order_item.price = order_item.get_final_price()
+            context = {"order": order}
+            return render(self.request, "order/order_summary.html", context)
         except ObjectDoesNotExist:
             messages.warning(self.request, "you do not have an active order")
-            return redirect('/')
+            return redirect("/")
+
 
 class OrderedView(
     ListView,
     LoginRequiredMixin,
-    ):
+):
     model = Order
-    context_object_name = 'order'
-    template_name = 'order/order_list.html'
+    context_object_name = "order"
+    template_name = "order/order_list.html"
+
+
 def get(self, *args, **kwargs):
     try:
         order = Order.objects.get(user=self.request.user, ordered=True)
-        context = {
-            'order': order
-        }
-        return render(self.request, 'order/ordered_view.html', context)
+        context = {"order": order}
+        return render(self.request, "order/ordered_view.html", context)
     except ObjectDoesNotExist:
         messages.warning(self.request, "you don't have an active order2")
-        return redirect('/')
+        return redirect("/")
 
-class OrderedDetailView(
-        DeleteView):
+
+class OrderedDetailView(DeleteView):
     model = Order
-    context_object_name = 'order'
-    template_name = 'order/order_detail.html'
+    context_object_name = "order"
+    template_name = "order/order_detail.html"
+
 
 # @login_required(login_url='/accounts/login')
 # def add_to_cart(request, pk):
