@@ -59,7 +59,7 @@ class OrderedViewList(APIView):
 
 class OrderSummary(APIView):
     """
-    Return a for this user
+    Return the order for this user
     """
 
     def get(self, request, query=None):

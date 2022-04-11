@@ -1,4 +1,5 @@
 import uuid
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -18,23 +19,33 @@ class OrderItem(models.Model):
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(ProductInventory, on_delete=models.PROTECT)
     quantity = models.IntegerField(default=1)
+    price = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        unique=False,
+        null=False,
+        blank=False,
+        verbose_name=_("regular store price"),
+        help_text=_("format: maximum price 999.99"),
+        error_messages={
+            "name": {
+                "max_length": _("the price must be between 0 and 999.99."),
+            },
+        },
+    )
 
     def __str__(self):
         return f"{self.quantity} of {self.item.product.name}"
 
-    def get_total_item_price(self):
-        return self.quantity * self.item.retail_price
+    def get_product_name(self):
+        return f"{self.item.product.name}"
 
-    # def get_total_discount_item_price(self):
-    #     return self.quantity
-
-    # def get_amount_saved(self):
-    #     return self.get_total_item_price() - self.get_total_discount_item_price()
+    def get_individual_price(self):
+        return self.item.store_price
 
     def get_final_price(self):
-        # if self.item.discount_price:
-        #     return self.get_total_discount_item_price()
-        return self.get_total_item_price()
+        price = self.quantity * self.item.store_price
+        return price
 
 
 class Order(models.Model):
@@ -53,7 +64,7 @@ class Order(models.Model):
     phone_number = models.CharField(max_length=11, null=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     address_2 = models.CharField(max_length=200, null=True, blank=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 
     class Meta:
         indexes = [
@@ -67,7 +78,7 @@ class Order(models.Model):
         return reverse("order_detail", args=[str(self.id)])
 
     def get_total(self):
-        total = 0
+        total = Decimal(0)
         for order_item in self.items.all():
             total += order_item.get_final_price()
         return total

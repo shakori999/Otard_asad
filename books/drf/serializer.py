@@ -115,50 +115,52 @@ class ProductInventorySearchSerializer(serializers.ModelSerializer):
         ]
 
 
-class OrderItemSerializer(serializers.ModelSerializer):
+class OrderedViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = [
+            "ordered_date",
+            "name",
+            "phone_number",
+            "price",
+            "address",
+            "address_2",
+        ]
 
-    item = ProductInventorySerializer(many=False, read_only=True)
+
+class OrderItemSummarySerializer(serializers.ModelSerializer):
+
+    item_name = serializers.CharField(source="get_product_name", read_only=True)
+    individual_price = serializers.CharField(
+        source="get_individual_price", read_only=True
+    )
+    total_price = serializers.CharField(source="get_final_price", read_only=True)
 
     class Meta:
         model = OrderItem
         fields = [
-            # "user",
-            "ordered",
-            "item",
+            # # "user",
+            # "ordered",
+            "item_name",
             "quantity",
-        ]
-
-
-class OrderedViewSerializer(serializers.ModelSerializer):
-
-    items = OrderItemSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Order
-        fields = [
-            "items",
-            "ordered_date",
-            "ordered",
-            "name",
-            "phone_number",
-            "address",
-            "address_2",
-            "price",
+            "individual_price",
+            "total_price",
         ]
 
 
 class OrderSummarySerializer(serializers.ModelSerializer):
 
-    items = OrderItemSerializer(many=True, read_only=True)
+    items = OrderItemSummarySerializer(many=True, read_only=True)
+    order_total_price = serializers.CharField(source="get_total", read_only=True)
 
     class Meta:
         model = Order
         fields = [
             "items",
-            "ordered",
-            "name",
-            "phone_number",
-            "address",
-            "address_2",
-            "price",
+            # "ordered",
+            # "name",
+            # "phone_number",
+            # "address",
+            # "address_2",
+            "order_total_price",
         ]

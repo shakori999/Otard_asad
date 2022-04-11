@@ -36,7 +36,7 @@
                             ${{ order_item.get_total_discount_item_price}}
                             <span class="badge badge-primary">saving ${{order_item.get_amount_saved }}</span>
                         {% else %} {% endcomment %}
-                            ${{ order_item.get_total_item_price }}
+                            ${{ order_item.get_final_price }}
                         {% comment %} {% endif %} {% endcomment %}
                         {% comment %} <a style="color: red;" href="{% url 'remove-from-cart' order_item.item.id %}">
                             <i class="fas fa-trash float-right"></i>
