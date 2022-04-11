@@ -198,7 +198,7 @@ def order_item(
 
     order_item = OrderItem.objects.create(
         user=user,
-        ordered=False,
+        ordered=True,
         item=sub_product,
         quantity=1,
     )

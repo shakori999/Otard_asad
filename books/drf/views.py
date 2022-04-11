@@ -46,24 +46,23 @@ class ProductInventoryByWebId(APIView):
         return Response(serializer.data)
 
 
-class OrderView(APIView):
+class OrderedViewList(APIView):
     """
     Return a list of orders for this user
     """
 
-    def get(self, request, query=None):
+    def get(self, request):
         queryset = Order.objects.filter(ordered=True)
-        serializer = OrderSerializer(queryset, many=True)
+        serializer = OrderedViewSerializer(queryset, many=True)
         return Response(serializer.data)
 
 
-# def get(self, *args, **kwargs):
-#     try:
-#         order = Order.objects.get(user=self.request.user, ordered=True)
-#         context = {
-#             'order': order
-#         }
-#         return render(self.request, 'order/ordered_view.html', context)
-#     except ObjectDoesNotExist:
-#         messages.warning(self.request, "you don't have an active order2")
-#         return redirect('/')
+class OrderSummary(APIView):
+    """
+    Return a for this user
+    """
+
+    def get(self, request, query=None):
+        queryset = Order.objects.filter(ordered=False)
+        serializer = OrderSummarySerializer(queryset, many=True)
+        return Response(serializer.data)

@@ -129,7 +129,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
         ]
 
 
-class OrderSerializer(serializers.ModelSerializer):
+class OrderedViewSerializer(serializers.ModelSerializer):
 
     items = OrderItemSerializer(many=True, read_only=True)
 
@@ -137,8 +137,24 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = [
             "items",
-            "start_date",
             "ordered_date",
+            "ordered",
+            "name",
+            "phone_number",
+            "address",
+            "address_2",
+            "price",
+        ]
+
+
+class OrderSummarySerializer(serializers.ModelSerializer):
+
+    items = OrderItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Order
+        fields = [
+            "items",
             "ordered",
             "name",
             "phone_number",
