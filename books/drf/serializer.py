@@ -127,11 +127,6 @@ class OrderedViewSerializer(serializers.HyperlinkedModelSerializer):
             "address",
             "address_2",
         )
-        # exclude = [
-        #     "count",
-        #     "next",
-        #     "previous",
-        # ]
 
 
 class OrderItemSummarySerializer(serializers.ModelSerializer):

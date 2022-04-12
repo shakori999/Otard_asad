@@ -1,12 +1,10 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions, mixins, generics
-from rest_framework.views import APIView
 from inventory.models import *
 from order.models import *
 from drf.serializer import *
 from rest_framework.response import Response
 
-from rest_framework.decorators import action
 from .pagination import CustomPagination
 
 # Create your views here.
@@ -32,31 +30,8 @@ class CategoryList(viewsets.ModelViewSet):
         Return List of items in this category
         """
         queryset = Product.objects.filter(category__slug=pk)
-        # category = get_object_or_404(queryset, category__slug=pk)
         serializer = ProductSerializer(queryset, many=True)
         return Response(serializer.data)
-
-
-# class ProductByCategory(viewsets.ModelViewSet):
-#     """
-#     API endpoint that returns products by category
-#     """
-
-#     queryset = Product.objects.all()
-#     serializer_class = ProductSerializer
-
-#     @action(
-#         methods=["get"],
-#         detail=True,
-#     )
-#     def get_queryset(self):
-#         category = self.kwargs.get("category", None)
-
-#         if category:
-#             return Product.objects.filter(
-#                 category__slug=category,
-#             )
-#         return super().get_queryset()
 
 
 class ProductInventoryByWebId(viewsets.ModelViewSet):
@@ -72,14 +47,8 @@ class ProductInventoryByWebId(viewsets.ModelViewSet):
         Return List of items in this category
         """
         queryset = ProductInventory.objects.filter(product__web_id=pk)
-        # category = get_object_or_404(queryset, category__slug=pk)
         serializer = ProductInventorySerializer(queryset, many=True)
         return Response(serializer.data)
-
-    # def get(self, request, query=None):
-    #     queryset = ProductInventory.objects.filter(product__web_id=query)
-    #     serializer = ProductInventorySerializer(queryset, many=True)
-    #     return Response(serializer.data)
 
 
 class OrderedViewList(viewsets.ModelViewSet):
@@ -109,14 +78,3 @@ class OrderSummary(viewsets.ModelViewSet):
 
     queryset = Order.objects.filter(ordered=False)
     serializer_class = OrderSummarySerializer
-
-
-# class OrderedDetail(APIView):
-#     """
-#     Return order's detail for ordered order
-#     """
-
-#     def get(self, request, query=None):
-#         queryset = Order.objects.filter(ordered=True)
-#         serializer = OrderSummarySerializer(queryset, many=True)
-#         return Response(serializer.data)

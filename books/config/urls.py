@@ -19,16 +19,6 @@ urlpatterns = [
     path("checkout/", include("checkout.urls")),
     # API endponts
     path("api/", include(router.urls)),
-    path("", include("drf.urls")),
-    # path("api/inventory/category/all/", CategoryList.as_view()),
-    # path("api/inventory/products/category/<str:query>/", ProductByCategory.as_view()),
-    # path("api/inventory/<int:query>/", ProductInventoryByWebId.as_view()),
-    # # API endpoints for order managment system
-    # path("api/order/ordered-view/", OrderedViewList.as_view()),
-    # path("api/order/order-summary/", OrderSummary.as_view()),
-    # path("api/order/ordered-detail/<uuid:pk>", OrderSummary.as_view()),
-    # # ealsticsearch
-    # path("api/search/<str:query>/", SearchProductInventory.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
