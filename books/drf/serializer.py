@@ -115,10 +115,11 @@ class ProductInventorySearchSerializer(serializers.ModelSerializer):
         ]
 
 
-class OrderedViewSerializer(serializers.ModelSerializer):
+class OrderedViewSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = [
+            "id",
             "ordered_date",
             "name",
             "phone_number",
@@ -139,8 +140,6 @@ class OrderItemSummarySerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = [
-            # # "user",
-            # "ordered",
             "item_name",
             "quantity",
             "individual_price",
@@ -157,10 +156,21 @@ class OrderSummarySerializer(serializers.ModelSerializer):
         model = Order
         fields = [
             "items",
-            # "ordered",
-            # "name",
-            # "phone_number",
-            # "address",
-            # "address_2",
+            "order_total_price",
+        ]
+
+
+class OrderedDetailSerializer(serializers.HyperlinkedModelSerializer):
+
+    items = OrderItemSummarySerializer(many=True, read_only=True)
+    order_total_price = serializers.CharField(source="get_total", read_only=True)
+
+    class Meta:
+        model = Order
+        fields = [
+            "name",
+            "phone_number",
+            "address",
+            "items",
             "order_total_price",
         ]

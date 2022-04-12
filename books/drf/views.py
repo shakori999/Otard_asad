@@ -46,15 +46,19 @@ class ProductInventoryByWebId(APIView):
         return Response(serializer.data)
 
 
-class OrderedViewList(APIView):
+class OrderedViewList(viewsets.ModelViewSet):
     """
     Return a list of orders for this user
     """
 
-    def get(self, request):
-        queryset = Order.objects.filter(ordered=True)
-        serializer = OrderedViewSerializer(queryset, many=True)
-        return Response(serializer.data)
+    queryset = Order.objects.all()
+    serializer_class = OrderedViewSerializer
+
+    # def get_queryset(self):
+    # queryset = Order.objects.filter(ordered=True)
+    # serializer = OrderedViewSerializer(queryset, many=True)
+    # return Response(serializer.data)
+    # return self.Order.objects.all()
 
 
 class OrderSummary(APIView):
@@ -64,5 +68,16 @@ class OrderSummary(APIView):
 
     def get(self, request, query=None):
         queryset = Order.objects.filter(ordered=False)
+        serializer = OrderSummarySerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class OrderedDetail(APIView):
+    """
+    Return order's detail for ordered order
+    """
+
+    def get(self, request, query=None):
+        queryset = Order.objects.filter(ordered=True)
         serializer = OrderSummarySerializer(queryset, many=True)
         return Response(serializer.data)
