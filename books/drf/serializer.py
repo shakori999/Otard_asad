@@ -38,14 +38,14 @@ class ProductMediaSerializer(serializers.ModelSerializer):
         return obj.img_url.url
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
         fields = ["name", "slug", "is_active"]
         read_only = True
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
         fields = [
@@ -118,15 +118,20 @@ class ProductInventorySearchSerializer(serializers.ModelSerializer):
 class OrderedViewSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
-        fields = [
-            "id",
+        fields = (
+            # "id",
             "ordered_date",
             "name",
             "phone_number",
             "price",
             "address",
             "address_2",
-        ]
+        )
+        # exclude = [
+        #     "count",
+        #     "next",
+        #     "previous",
+        # ]
 
 
 class OrderItemSummarySerializer(serializers.ModelSerializer):
@@ -147,7 +152,7 @@ class OrderItemSummarySerializer(serializers.ModelSerializer):
         ]
 
 
-class OrderSummarySerializer(serializers.ModelSerializer):
+class OrderSummarySerializer(serializers.HyperlinkedModelSerializer):
 
     items = OrderItemSummarySerializer(many=True, read_only=True)
     order_total_price = serializers.CharField(source="get_total", read_only=True)

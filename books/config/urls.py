@@ -19,6 +19,7 @@ urlpatterns = [
     path("checkout/", include("checkout.urls")),
     # API endponts
     path("api/", include(router.urls)),
+    path("", include("drf.urls")),
     # path("api/inventory/category/all/", CategoryList.as_view()),
     # path("api/inventory/products/category/<str:query>/", ProductByCategory.as_view()),
     # path("api/inventory/<int:query>/", ProductInventoryByWebId.as_view()),

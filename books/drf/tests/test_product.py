@@ -5,7 +5,7 @@ from .utils import convert_to_dot_notation
 
 def test_get_product_by_category(api_client, single_product):
     product = single_product
-    endpoint = f"/api/inventory/products/category/{product.category}/"
+    endpoint = f"/api/inventory/category/{product.category}/"
     response = api_client().get(endpoint)
     expected_json = [
         {
