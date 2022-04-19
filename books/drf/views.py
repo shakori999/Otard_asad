@@ -4,8 +4,9 @@ from inventory.models import *
 from order.models import *
 from drf.serializer import *
 from rest_framework.response import Response
-
+from rest_framework.decorators import APIView
 from .pagination import CustomPagination
+from rest_framework import status
 
 # Create your views here.
 
@@ -17,7 +18,7 @@ class CategoryList(viewsets.ModelViewSet):
 
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    pagination_class = CustomPagination
+    # pagination_class = CustomPagination
 
     def list(self, request):
         """ """
@@ -40,15 +41,12 @@ class ProductInventoryByWebId(viewsets.ModelViewSet):
     """
 
     queryset = ProductInventory.objects.all()
-    serializer_class = ProductInventorySerializer
+    # serializer_class = ProductInventorySerializer
 
-    def retrieve(self, request, pk=None):
-        """
-        Return List of items in this category
-        """
-        queryset = ProductInventory.objects.filter(product__web_id=pk)
-        serializer = ProductInventorySerializer(queryset, many=True)
-        return Response(serializer.data)
+    def get_serializer_class(self):
+        if self.request.method in ("GET",):
+            return ProductInventoryReadSerializer
+        return ProductInventorySerializer
 
 
 class OrderedViewList(viewsets.ModelViewSet):

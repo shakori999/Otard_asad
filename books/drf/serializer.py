@@ -56,7 +56,36 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         editable = False
 
 
+class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ProductType
+        fields = [
+            "name",
+        ]
+        read_only = True
+        editable = False
+
+
 class ProductInventorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductInventory
+        fields = [
+            "id",
+            "sku",
+            "upc",
+            "product_type",
+            "product",
+            "brand",
+            "is_active",
+            "is_default",
+            "retail_price",
+            "store_price",
+            "is_digital",
+            "weight",
+        ]
+
+
+class ProductInventoryReadSerializer(ProductInventorySerializer):
     product = ProductSerializer(many=False, read_only=True)
     brand = BrandSerializer(many=False, read_only=True)
     attributes = ProductAttributeValueSerializer(
@@ -69,6 +98,7 @@ class ProductInventorySerializer(serializers.ModelSerializer):
         many=True,
         read_only=True,
     )
+    product_type = ProductTypeSerializer(many=False, read_only=True)
     promotion_price = serializers.SerializerMethodField()
 
     class Meta:
@@ -77,6 +107,7 @@ class ProductInventorySerializer(serializers.ModelSerializer):
             "id",
             "sku",
             "store_price",
+            "retail_price",
             "is_default",
             "brand",
             "product",
@@ -96,6 +127,12 @@ class ProductInventorySerializer(serializers.ModelSerializer):
             return x.promo_price
         except ObjectDoesNotExist:
             return None
+
+    # def create(self, validated_data):
+    #     product = validated_data.pop("product")
+    #     productinv = ProductInventory.objects.create(**validated_data, **product)
+
+    #     return productinv
 
 
 class ProductInventorySearchSerializer(serializers.ModelSerializer):
