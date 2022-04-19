@@ -128,12 +128,6 @@ class ProductInventoryReadSerializer(ProductInventorySerializer):
         except ObjectDoesNotExist:
             return None
 
-    # def create(self, validated_data):
-    #     product = validated_data.pop("product")
-    #     productinv = ProductInventory.objects.create(**validated_data, **product)
-
-    #     return productinv
-
 
 class ProductInventorySearchSerializer(serializers.ModelSerializer):
 
@@ -184,14 +178,23 @@ class OrderItemSummarySerializer(serializers.ModelSerializer):
         ]
 
 
-class OrderSummarySerializer(serializers.HyperlinkedModelSerializer):
+class OrderSummarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = [
+            "id",
+            "items",
+        ]
 
+
+class OrderSummaryReadSerializer(OrderSummarySerializer):
     items = OrderItemSummarySerializer(many=True, read_only=True)
     order_total_price = serializers.CharField(source="get_total", read_only=True)
 
     class Meta:
         model = Order
         fields = [
+            "id",
             "items",
             "order_total_price",
         ]

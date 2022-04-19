@@ -1,3 +1,4 @@
+from functools import partial
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions, mixins, generics
 from inventory.models import *
@@ -18,21 +19,6 @@ class CategoryList(viewsets.ModelViewSet):
 
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    # pagination_class = CustomPagination
-
-    def list(self, request):
-        """ """
-        queryset = Category.objects.all()
-        serializer = CategorySerializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        """
-        Return List of items in this category
-        """
-        queryset = Product.objects.filter(category__slug=pk)
-        serializer = ProductSerializer(queryset, many=True)
-        return Response(serializer.data)
 
 
 class ProductInventoryByWebId(viewsets.ModelViewSet):
@@ -41,7 +27,6 @@ class ProductInventoryByWebId(viewsets.ModelViewSet):
     """
 
     queryset = ProductInventory.objects.all()
-    # serializer_class = ProductInventorySerializer
 
     def get_serializer_class(self):
         if self.request.method in ("GET",):
@@ -75,4 +60,8 @@ class OrderSummary(viewsets.ModelViewSet):
     """
 
     queryset = Order.objects.filter(ordered=False)
-    serializer_class = OrderSummarySerializer
+
+    def get_serializer_class(self):
+        if self.request.method in ("GET",):
+            return OrderSummaryReadSerializer
+        return OrderSummarySerializer

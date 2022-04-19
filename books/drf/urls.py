@@ -16,6 +16,6 @@ router = routers.DefaultRouter()
 router.register(r"ordered-view", OrderedViewList, basename="ordered-view")
 router.register(r"order-summary", OrderSummary, basename="order-summary")
 # Products API endpoints
-router.register(r"inventory/category", CategoryList, basename="category-all")
+router.register(r"category", CategoryList, basename="category-all")
 router.register(r"inventory", ProductInventoryByWebId, basename="product-by-web-id")
 # Search API endpoint
