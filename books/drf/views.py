@@ -21,8 +21,9 @@ class CategoryList(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
 
     def retrieve(self, request, pk=None):
-        product_web = Product.objects.filter(category__slug=pk)
+        product_web = Product.objects.filter(category_id=pk)
         serializer = ProductSerializer(product_web, many=True)
+        # lookup_field = "slug"
         return Response(serializer.data)
 
 
@@ -39,9 +40,8 @@ class ProductInventoryByWebId(viewsets.ModelViewSet):
         return ProductInventorySerializer
 
     def retrieve(self, request, pk=None):
-        queryset = ProductInventory.objects.all()
-        product_web = get_object_or_404(queryset, product__web_id=pk)
-        serializer = ProductInventorySerializer(product_web)
+        product_web = ProductInventory.objects.filter(product__id=pk)
+        serializer = ProductInventorySerializer(product_web, many=True)
         return Response(serializer.data)
 
 
@@ -53,10 +53,13 @@ class OrderedViewList(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderedViewSerializer
 
-    def list(self, request):
-        queryset = Order.objects.all()
-        serializer = OrderedViewSerializer(queryset, many=True)
-        return Response(serializer.data)
+    # def list(self, request):
+    #     queryset = Order.objects.all()
+    #     serializer = OrderedViewSerializer(
+    #         queryset,
+    #         many=True,
+    #     )
+    #     return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         queryset = Order.objects.all()

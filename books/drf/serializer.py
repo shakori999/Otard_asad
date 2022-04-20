@@ -41,7 +41,7 @@ class ProductMediaSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
-        fields = ["name", "slug", "is_active"]
+        fields = ["url", "name", "slug", "is_active"]
         read_only = True
 
 
@@ -104,6 +104,7 @@ class ProductInventoryReadSerializer(ProductInventorySerializer):
     class Meta:
         model = ProductInventory
         fields = [
+            "url",
             "id",
             "sku",
             "store_price",
@@ -151,6 +152,7 @@ class OrderedViewSerializer(serializers.HyperlinkedModelSerializer):
         model = Order
         fields = (
             # "id",
+            "url",
             "ordered_date",
             "name",
             "phone_number",
@@ -158,6 +160,7 @@ class OrderedViewSerializer(serializers.HyperlinkedModelSerializer):
             "address",
             "address_2",
         )
+        read_only = True
 
 
 class OrderItemSummarySerializer(serializers.ModelSerializer):
@@ -221,12 +224,16 @@ class OrderSummaryReadSerializer(OrderSummarySerializer):
 
 class OrderedDetailSerializer(serializers.HyperlinkedModelSerializer):
 
-    items = OrderItemSummarySerializer(many=True, read_only=True)
+    items = OrderItemSummarySerializer(
+        many=True,
+        read_only=True,
+    )
     order_total_price = serializers.CharField(source="get_total", read_only=True)
 
     class Meta:
         model = Order
         fields = [
+            # "url",
             "name",
             "phone_number",
             "address",
