@@ -183,12 +183,23 @@ class OrderSummarySerializer(serializers.ModelSerializer):
         model = Order
         fields = [
             "id",
+            "user",
             "items",
+            "start_date",
+            "ordered_date",
+            "ordered",
+            "name",
+            "phone_number",
+            "address",
+            "address_2",
+            "price",
         ]
 
 
 class OrderSummaryReadSerializer(OrderSummarySerializer):
     items = OrderItemSummarySerializer(many=True, read_only=True)
+    order = Order.objects.get(ordered=False)
+    order.price = order.get_total()
     order_total_price = serializers.CharField(source="get_total", read_only=True)
 
     class Meta:
@@ -197,6 +208,14 @@ class OrderSummaryReadSerializer(OrderSummarySerializer):
             "id",
             "items",
             "order_total_price",
+            # "start_date",
+            # "ordered_date",
+            # "ordered",
+            # "name",
+            # "phone_number",
+            # "address",
+            # "address_2",
+            # "price",
         ]
 
 
