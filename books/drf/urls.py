@@ -13,8 +13,12 @@ urlpatterns = [
 
 router = routers.DefaultRouter()
 # Orders API endpoints
+router.register(
+    r"order-summary",
+    OrderSummary,
+    basename="order-summary",
+)
 router.register(r"ordered-view", OrderedViewList, basename="order")
-router.register(r"order-summary", OrderSummary, basename="order-summary")
 # Products API endpoints
 router.register(r"category", CategoryList, basename="category")
 router.register(r"inventory", ProductInventoryByWebId, basename="productinventory")

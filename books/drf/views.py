@@ -50,16 +50,8 @@ class OrderedViewList(viewsets.ModelViewSet):
     Return a list of orders for this user
     """
 
-    queryset = Order.objects.all()
+    queryset = Order.objects.filter(ordered=True)
     serializer_class = OrderedViewSerializer
-
-    # def list(self, request):
-    #     queryset = Order.objects.all()
-    #     serializer = OrderedViewSerializer(
-    #         queryset,
-    #         many=True,
-    #     )
-    #     return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         queryset = Order.objects.all()
@@ -80,7 +72,21 @@ class OrderSummary(viewsets.ModelViewSet):
             return OrderSummaryReadSerializer
         return OrderSummarySerializer
 
-    # def update(self, request, *args, **kwargs):
-    #     user = self.request.user
+    def list(self, request, pk=None):
 
-    #     return super().update(request, *args, **kwargs)
+        queryset = Order.objects.filter(ordered=False)
+        for order in queryset:
+            order = order
+            serializer = OrderSummaryReadSerializer(order)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        product_web = Order.objects.filter(id=pk, ordered=False)
+        serializer = OrderSummarySerializer(product_web, many=True)
+        return Response(serializer.data)
+
+    def partial_update(self, request, pk=None):
+        serialized = OrderSummarySerializer(
+            request.user, data=request.data, partial=True
+        )
+        return Response(serialized.data)

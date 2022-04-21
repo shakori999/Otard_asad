@@ -181,7 +181,29 @@ class OrderItemSummarySerializer(serializers.ModelSerializer):
         ]
 
 
+class OrderedDetailSerializer(serializers.HyperlinkedModelSerializer):
+
+    items = OrderItemSummarySerializer(
+        many=True,
+        read_only=True,
+    )
+    order_total_price = serializers.CharField(source="get_total", read_only=True)
+
+    class Meta:
+        model = Order
+        fields = [
+            # "url",
+            "name",
+            "phone_number",
+            "address",
+            "items",
+            "order_total_price",
+        ]
+
+
 class OrderSummarySerializer(serializers.ModelSerializer):
+    price = serializers.CharField(source="get_total", read_only=True)
+
     class Meta:
         model = Order
         fields = [
@@ -208,35 +230,23 @@ class OrderSummaryReadSerializer(OrderSummarySerializer):
     class Meta:
         model = Order
         fields = [
+            # "url",
             "id",
+            "user",
+            "name",
             "items",
             "order_total_price",
             # "start_date",
             # "ordered_date",
-            # "ordered",
-            # "name",
-            # "phone_number",
-            # "address",
-            # "address_2",
-            # "price",
-        ]
-
-
-class OrderedDetailSerializer(serializers.HyperlinkedModelSerializer):
-
-    items = OrderItemSummarySerializer(
-        many=True,
-        read_only=True,
-    )
-    order_total_price = serializers.CharField(source="get_total", read_only=True)
-
-    class Meta:
-        model = Order
-        fields = [
-            # "url",
-            "name",
+            "start_date",
+            "ordered_date",
+            "ordered",
             "phone_number",
             "address",
-            "items",
-            "order_total_price",
+            "address_2",
         ]
+
+    def update(self, instance, validated_data):
+        demo = Order.objects.get(pk=instance.id)
+        Order.objects.filter(pk=instance.id).update(**validated_data)
+        return demo
