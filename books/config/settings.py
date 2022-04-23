@@ -47,12 +47,9 @@ INSTALLED_APPS = [
     "django_elasticsearch_dsl",
     # Local
     "accounts",
-    "pages",
-    "books",
     "order",
     "checkout",
     # New apps for updateing database
-    "dashboard",
     "inventory",
     "demo",
     # new apps for DRF

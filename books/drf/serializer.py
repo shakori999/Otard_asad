@@ -151,7 +151,6 @@ class OrderedViewSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = (
-            # "id",
             "url",
             "ordered_date",
             "name",
@@ -192,61 +191,9 @@ class OrderedDetailSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = [
-            # "url",
             "name",
             "phone_number",
             "address",
             "items",
             "order_total_price",
         ]
-
-
-class OrderSummarySerializer(serializers.ModelSerializer):
-    price = serializers.CharField(source="get_total", read_only=True)
-
-    class Meta:
-        model = Order
-        fields = [
-            "id",
-            "user",
-            "items",
-            "start_date",
-            "ordered_date",
-            "ordered",
-            "name",
-            "phone_number",
-            "address",
-            "address_2",
-            "price",
-        ]
-
-
-class OrderSummaryReadSerializer(OrderSummarySerializer):
-    items = OrderItemSummarySerializer(many=True, read_only=True)
-    order = Order.objects.get(ordered=False)
-    order.price = order.get_total()
-    order_total_price = serializers.CharField(source="get_total", read_only=True)
-
-    class Meta:
-        model = Order
-        fields = [
-            # "url",
-            "id",
-            "user",
-            "name",
-            "items",
-            "order_total_price",
-            # "start_date",
-            # "ordered_date",
-            "start_date",
-            "ordered_date",
-            "ordered",
-            "phone_number",
-            "address",
-            "address_2",
-        ]
-
-    def update(self, instance, validated_data):
-        demo = Order.objects.get(pk=instance.id)
-        Order.objects.filter(pk=instance.id).update(**validated_data)
-        return demo

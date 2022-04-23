@@ -11,14 +11,16 @@ urlpatterns = [
     # Djago admin
     path("bingo/", admin.site.urls),
     # User management
-    path("accounts/", include("allauth.urls")),
+    # path("accounts/", include("allauth.urls")),
     # Local apps
-    path("", include("dashboard.urls")),
-    path("books/", include("books.urls")),
-    path("order/", include("order.urls")),
-    path("checkout/", include("checkout.urls")),
+    # path("", include("dashboard.urls")),
+    # path("books/", include("books.urls")),
+    # path("order/", include("order.urls")),
+    # path("checkout/", include("checkout.urls")),
     # API endponts
-    path("api/", include(router.urls)),
+    path("", include("drf.urls")),
+    path("api-auth", include("rest_framework.urls")),
+    path("search/<str:query>", SearchProductInventory.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

@@ -187,13 +187,13 @@ def test_inventory_db_product_dbfixture(
     assert result_updated_at == updated_at
 
 
-# @pytest.mark.dbfixture
-# def test_inventory_db_product_insert_data(db, product_factory, category_factory):
+@pytest.mark.dbfixture
+def test_inventory_db_product_insert_data(db, product_factory, category_factory):
 
-#     new_product = product_factory.create(category=(1, 2, 3, 4, 5))
-#     result_product_category = new_product.category.all().count()
-#     assert "web_id_" in new_product.web_id
-#     assert result_product_category == 5
+    new_product = product_factory.create(category=(1, 2, 3, 4, 5))
+    result_product_category = new_product.category.all().count()
+    assert "web_id_" in new_product.web_id
+    assert result_product_category == 5
 
 
 # @pytest.mark.dbfixture
