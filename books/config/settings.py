@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "rest_framework_simplejwt",
     "debug_toolbar",
     "django_countries",
     "mptt",
@@ -245,9 +246,10 @@ MPTT_ADMIN_LEVEL_INDENT = 20
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASS": ["rest_framework.permissions.AllowAny"],
     "DEFAULT_PAGINATION_CLASS": "drf.pagination.CustomPagination",
-    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
 
 ELASTICSEARCH_DSL = {

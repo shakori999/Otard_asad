@@ -1,10 +1,19 @@
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
 from drf.views import *
-from search.views import SearchProductInventory
 from drf.urls import *
+from accounts.views import *
+
+from search.views import SearchProductInventory
 
 
 urlpatterns = [
@@ -12,11 +21,9 @@ urlpatterns = [
     path("bingo/", admin.site.urls),
     # User management
     # path("accounts/", include("allauth.urls")),
-    # Local apps
-    # path("", include("dashboard.urls")),
-    # path("books/", include("books.urls")),
-    # path("order/", include("order.urls")),
-    # path("checkout/", include("checkout.urls")),
+    path("api/token/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     # API endponts
     path("", include("drf.urls")),
     path("api-auth", include("rest_framework.urls")),
