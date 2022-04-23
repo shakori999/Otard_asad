@@ -26,7 +26,7 @@ urlpatterns = [
     path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     # API endponts
     path("", include("drf.urls")),
-    path("api-auth", include("rest_framework.urls")),
+    # path("api-auth/", include("rest_framework.urls")),
     path("search/<str:query>", SearchProductInventory.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

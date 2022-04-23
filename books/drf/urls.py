@@ -6,12 +6,12 @@ from search.views import SearchProductInventory
 
 router = routers.DefaultRouter()
 # Orders API endpoints
-router.register(r"ordered-view", OrderedViewList, basename="order")
+router.register(r"ordered-view", OrderedView, basename="order")
 # Products API endpoints
-router.register(r"category", CategoryList, basename="category")
+router.register(r"category", Category, basename="category")
 router.register(r"inventory", ProductInventoryByWebId, basename="productinventory")
-# Search API endpoint
-# router.register(r"search/<str:query>", SearchProductInventory, basename="search")
+# User API endpoint
+router.register(r"user", User, basename="customuser")
 
 urlpatterns = [
     path("", include(router.urls)),

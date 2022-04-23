@@ -1,18 +1,19 @@
 from django.shortcuts import get_object_or_404
 
 from drf.serializer import *
+from accounts.serializer import UserSerializer
 from order.models import *
 from inventory.models import *
+from accounts.models import CustomUser
 
 from rest_framework.response import Response
-from rest_framework.decorators import APIView
-from rest_framework import viewsets, permissions, mixins, generics
-from rest_framework import status
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 # Create your views here.
 
 
-class CategoryList(viewsets.ModelViewSet):
+class Category(viewsets.ModelViewSet):
     """
     Return list of all categories
     """
@@ -44,16 +45,41 @@ class ProductInventoryByWebId(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class OrderedViewList(viewsets.ModelViewSet):
+class OrderedView(viewsets.ModelViewSet):
     """
     Return a list of orders for this user
     """
 
     queryset = Order.objects.filter(ordered=True)
     serializer_class = OrderedViewSerializer
+    permission_classes = (IsAuthenticated,)
 
     def retrieve(self, request, pk=None):
         queryset = Order.objects.all()
         order = get_object_or_404(queryset, pk=pk)
         serializer = OrderedDetailSerializer(order)
+        return Response(serializer.data)
+
+
+class User(viewsets.ModelViewSet):
+    """
+    Return list of all categories
+    """
+
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+
+    def get_permissions(self):
+        """
+        Instantiates and returns the list of permissions that this view requires.
+        """
+        if self.action == "list":
+            permission_classes = [IsAdminUser]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
+
+    def retrieve(self, request, pk=None):
+        product_web = CustomUser.objects.get(id=pk)
+        serializer = UserSerializer(product_web, context={"request": request})
         return Response(serializer.data)
