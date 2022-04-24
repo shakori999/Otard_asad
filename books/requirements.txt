@@ -24,7 +24,7 @@ defusedxml==0.7.1
 Deprecated==1.2.13
 dj-database-url==0.5.0
 dj-email-url==1.0.5
-Django==4.0.3
+Django==3.2.9
 django-allauth==0.50.0
 django-cache-url==3.4.0
 django-countries==7.3.2
@@ -38,6 +38,7 @@ django-ninja==0.17.0
 django-storages==1.12.3
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.1.0
+djantic==0.7.0
 elasticsearch==7.17.2
 elasticsearch-dsl==7.4.0
 environs==9.5.0
@@ -67,8 +68,10 @@ psycopg2==2.9.3
 psycopg2-binary==2.9.3
 py==1.11.0
 pycparser==2.21
-pydantic==1.9.0
+pydantic==1.8.2
+pydantic-django==0.1.1
 PyJWT==2.3.0
+pyngo==1.1.0
 pyOpenSSL==22.0.0
 pyparsing==3.0.7
 PySocks==1.7.1

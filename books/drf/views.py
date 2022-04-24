@@ -69,15 +69,15 @@ class User(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
-    def get_permissions(self):
-        """
-        Instantiates and returns the list of permissions that this view requires.
-        """
-        if self.action == "list":
-            permission_classes = [IsAdminUser]
-        else:
-            permission_classes = [IsAuthenticated]
-        return [permission() for permission in permission_classes]
+    # def get_permissions(self):
+    # """
+    # Instantiates and returns the list of permissions that this view requires.
+    # """
+    # if self.action == "list":
+    # permission_classes = [IsAdminUser]
+    # else:
+    # permission_classes = [IsAuthenticated]
+    # return [permission() for permission in permission_classes]
 
     def retrieve(self, request, pk=None):
         product_web = CustomUser.objects.get(id=pk)
